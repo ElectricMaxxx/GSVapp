@@ -12,5 +12,15 @@
         "zendframework/zendframework": "2.3.*",
         "doctrine/doctrine-orm-module": "0.7.*",
         "zendframework/zend-developer-tools": "dev-master"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "4.1.*"
+    },
+    "autoload": {
+        "psr-0": {
+            "Event": "module/Event/src/",
+            "Core": "module/Core/src/",
+            "CashBox": "module/CashBox/src/"
+        }
     }
 }

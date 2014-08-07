@@ -1,0 +1,7 @@
+<phpunit bootstrap="Bootstrap.php" colors="true">
+    <testsuites>
+        <testsuite name="Module: UnitTests - Event">
+            <directory>./Unit</directory>
+        </testsuite>
+    </testsuites>
+</phpunit>

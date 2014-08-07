@@ -6,8 +6,6 @@ return array(
         'DoctrineModule',
         'DoctrineORMModule',
         'Application',
-        'Core',
-        'CashBox',
         'Event',
     ),
 
