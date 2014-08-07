@@ -5,8 +5,10 @@ return array(
         'ZendDeveloperTools',
         'DoctrineModule',
         'DoctrineORMModule',
-        'ZfcTwig',
         'Application',
+        'Core',
+        'CashBox',
+        'Event',
     ),
 
     // These are various options for the listeners attached to the ModuleManager
