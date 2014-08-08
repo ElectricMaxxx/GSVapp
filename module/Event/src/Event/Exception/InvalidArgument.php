@@ -8,7 +8,7 @@ namespace Event\Exception;
  *
  * @author Maximilian Berghoff <Maximilian.Berghoff@gmx.de>
  */
-class InvalidArgumentException extends \RuntimeException
+class InvalidArgument extends \RuntimeException
 {
 
 }
