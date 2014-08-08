@@ -3,8 +3,9 @@
 
 namespace Event\Doctrine\Orm;
 
+use Event\Exception\InvalidOperation;
 use Event\Model\ComputePricesAware;
-use Event\Exception\InvalidArgumentException;
+use Event\Exception\InvalidArgument;
 
 /**
  * A consumption describes a specific part of a meal with an amount
@@ -39,6 +40,15 @@ class Consumption implements ComputePricesAware
      * @var int
      */
     private $amountOf;
+
+    /**
+     * The current value of the meal when booking this consumption.
+     *
+     * This one will be persisted and used for the calculations.
+     *
+     * @var int
+     */
+    private $currentPriceOfMeal;
 
     /**
      * Need to be one of the constants defined above.
@@ -97,6 +107,7 @@ class Consumption implements ComputePricesAware
     public function setMeal(Meal $meal)
     {
         $this->meal = $meal;
+        $this->currentPriceOfMeal = $meal->getPrice();
     }
 
     /**
@@ -109,13 +120,13 @@ class Consumption implements ComputePricesAware
 
     /**
      * @param string $currentState
-     * @throws InvalidArgumentException
+     * @throws InvalidArgument
      */
     public function setCurrentState($currentState)
     {
         $states = array(self::STATE_PAID, self::STATE_POST_SET, self::STATE_PRE_ORDERED);
         if (!in_array($currentState, $states)) {
-            throw new InvalidArgumentException(
+            throw new InvalidArgument(
                 sprintf(
                     'State %s is not allowed to set, use one of  %s instead',
                     $currentState,
@@ -172,7 +183,16 @@ class Consumption implements ComputePricesAware
      */
     public function getPriceInComplete()
     {
-        return $this->amountOf*$this->meal->getPrice();
+        if (null === $this->meal || null === $this->amountOf) {
+            throw new InvalidOperation('You should have set a meal and its amount before starting to calculate.');
+        }
+
+        // Price will be fixed calculating the the first time, or by setting  meal with a valid value
+        if (null === $this->currentPriceOfMeal) {
+            $this->currentPriceOfMeal = $this->meal->getPrice();
+        }
+
+        return $this->amountOf*$this->currentPriceOfMeal;
     }
 
     /**
@@ -195,5 +215,21 @@ class Consumption implements ComputePricesAware
         }
 
         return $this->getPriceInComplete();
+    }
+
+    /**
+     * @param int $currentPriceOfMeal
+     */
+    public function setCurrentPriceOfMeal($currentPriceOfMeal)
+    {
+        $this->currentPriceOfMeal = $currentPriceOfMeal;
+    }
+
+    /**
+     * @return int
+     */
+    public function getCurrentPriceOfMeal()
+    {
+        return $this->currentPriceOfMeal;
     }
 }

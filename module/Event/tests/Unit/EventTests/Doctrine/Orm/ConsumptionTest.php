@@ -15,7 +15,7 @@ class ConsumptionTest extends \PHPUnit_Framework_TestCase
     private $consumption;
 
     /** @var  Meal */
-    private $meal;
+    private $meal = 'Steak';
 
     public function setUp()
     {
@@ -29,9 +29,8 @@ class ConsumptionTest extends \PHPUnit_Framework_TestCase
     /**
      * @dataProvider getPriceValues
      */
-    public function testPriceInCompleteComputing($amountOf, $mealName, $mealPrice, $complete)
+    public function testPriceInCompleteComputing($amountOf, $mealPrice, $complete)
     {
-        $this->meal->setName($mealName);
         $this->meal->setPrice($mealPrice);
         $this->consumption->setAmountOf($amountOf);
 
@@ -41,9 +40,21 @@ class ConsumptionTest extends \PHPUnit_Framework_TestCase
     public function getPriceValues()
     {
         return array(
-            array('3','steak', '300', '900'),
-            array('0','steak', '300', '0'),
-            array('3','steak', '0', '0'),
+            array(3, 300, 900),
+            array(0, 300, 0),
+            array(3, 0, 0),
         );
+    }
+
+    public function testPriceStabilityInConsumption()
+    {
+        $this->meal->setPrice(300);
+        $this->consumption->setAmountOf(3);
+
+        $this->assertEquals(900, $this->consumption->getPriceInComplete());
+
+        $this->meal->setPrice(500);
+
+        $this->assertEquals(900, $this->consumption->getPriceInComplete());
     }
 }
