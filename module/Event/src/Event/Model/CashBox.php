@@ -40,11 +40,11 @@ class CashBox implements ComputePricesAware
     }
 
     /**
-     * @param Donation[]|ArrayCollection $donataions
+     * @param Donation[]|ArrayCollection $donations
      */
-    public function setDonations($donataions)
+    public function setDonations($donations)
     {
-        $this->donations = $donataions;
+        $this->donations = $donations;
     }
 
     /**
@@ -140,4 +140,3 @@ class CashBox implements ComputePricesAware
         return $this->getDonationsInComplete()-$this->getReceivables();
     }
 }
- 

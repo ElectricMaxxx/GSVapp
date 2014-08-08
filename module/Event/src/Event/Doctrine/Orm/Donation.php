@@ -77,4 +77,3 @@ class Donation
         return $this->value;
     }
 }
- 

@@ -120,7 +120,9 @@ class Event implements ComputePricesAware
      */
     public function getName()
     {
-        return $this->name;
+        return null === $this->name && $this->date instanceof \DateTime
+            ? 'Grillen am '.$this->date->format('d.m.Y')
+            : $this->name;
     }
 
     /**
