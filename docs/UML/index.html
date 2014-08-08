@@ -1,0 +1,155 @@
+<!-- Documentation produced by the Html generator of Bouml (http://bouml.free.fr) -->
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:svg="http://www.w3.org/2000/svg">
+
+<head>
+<title>GSVapp
+Documentation</title>
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body bgcolor="#ffffff">
+
+<div class = "title">GSVapp<br />Documentation</div>
+<p></p>
+
+<!-- ============================================================= -->
+
+<a name="refpackage129"></a>
+<p>Properties:<ul>
+<li>html dir:<br /><div class="sub">/home/maximilian/websites/Zend/GVApp/docs/</div></p></li>
+</ul></p>
+<a name="refclass view128002"></a>
+<h1 class ="view">1 Class View classView</h1>
+<div class="sub">
+<a name="refclass diagram128002"></a>
+<p align="center"><embed src="fig128002.svg" width="779" height="605"/></p>
+ <p align="center"><b>GSVclasses</b></p><p><br /></p><p><br /></p>
+<a name="refclass128002"></a>
+<h2 class ="class">1.1 Class Event</h2>
+<p>Declaration :</p><ul>
+</ul><div class="sub">
+<div class="sub">
+<a name="refattribute128002"></a>
+<table><tr><td><div class="element">Attribute <b>id</b></div></td></tr></table>
+<p>Declaration :</p><ul><li>Uml : - id : int</li></ul><a name="refattribute128130"></a>
+<table><tr><td><div class="element">Attribute <b>date</b></div></td></tr></table>
+<p>Declaration :</p><ul><li>Uml : - date : \DateTime</li></ul><a name="refattribute128258"></a>
+<table><tr><td><div class="element">Attribute <b>consumptions</b></div></td></tr></table>
+<p>Declaration :</p><ul><li>Uml : - consumptions : array</li></ul><a name="refattribute128386"></a>
+<table><tr><td><div class="element">Attribute <b>name</b></div></td></tr></table>
+<p>Declaration :</p><ul><li>Uml : - name : </li></ul><a name="refattribute128514"></a>
+<table><tr><td><div class="element">Attribute <b>description</b></div></td></tr></table>
+<p>Declaration :</p><ul><li>Uml : - description : </li></ul><a name="refrelation128386"></a>
+<table><tr><td><div class="element">Relation <b>&lt;aggregation&gt;</b></div></td></tr></table><p>One Event can have many consuptions. Every order of an user is one.<br /></p><p>Declaration :</p><ul><li>Uml : -  : <a href="index.html#refclass128130"><b>Consumption</b></a>, multiplicity : 1..*</li></ul><a name="refrelation129538"></a>
+<table><tr><td><div class="element">Relation <b>&lt;aggregation&gt;</b></div></td></tr></table><p>Declaration :</p><ul><li>Uml : -  : <a href="index.html#refclass128642"><b>CashBox</b></a></li></ul></div>
+</div>
+<p>All public operations : <a href="index.html#refoperation128002"><b>getPriceInComplete</b></a> , <a href="index.html#refoperation128258"><b>getReceivables</b></a> , <a href="index.html#refoperation128130"><b>isBalanced</b></a> </p>
+<a name="refclass128130"></a>
+<h2 class ="class">1.2 Class Consumption</h2>
+<p>Declaration :</p><ul>
+</ul><div class="sub">
+<div class="sub">
+<a name="refattribute128642"></a>
+<table><tr><td><div class="element">Attribute <b>id</b></div></td></tr></table>
+<p>Declaration :</p><ul><li>Uml : - id : </li></ul><a name="refattribute128770"></a>
+<table><tr><td><div class="element">Attribute <b>user</b></div></td></tr></table>
+<p>Declaration :</p><ul><li>Uml : - user : </li></ul><a name="refattribute128898"></a>
+<table><tr><td><div class="element">Attribute <b>event</b></div></td></tr></table>
+<p>Declaration :</p><ul><li>Uml : - event : </li></ul><a name="refattribute129026"></a>
+<table><tr><td><div class="element">Attribute <b>meal</b></div></td></tr></table>
+<p>Declaration :</p><ul><li>Uml : - meal : </li></ul><a name="refattribute129154"></a>
+<table><tr><td><div class="element">Attribute <b>amountOf</b></div></td></tr></table>
+<p>Declaration :</p><ul><li>Uml : - amountOf : </li></ul><a name="refattribute129282"></a>
+<table><tr><td><div class="element">Attribute <b>currentPriceOfMeal</b></div></td></tr></table>
+<p>Declaration :</p><ul><li>Uml : - currentPriceOfMeal : </li></ul><a name="refattribute129410"></a>
+<table><tr><td><div class="element">Attribute <b>state</b></div></td></tr></table>
+<p>Declaration :</p><ul><li>Uml : - state : </li></ul><a name="refrelation128514"></a>
+<table><tr><td><div class="element">Relation <b>&lt;aggregation&gt;</b></div></td></tr></table><p>Declaration :</p><ul><li>Uml : -  : <a href="index.html#refclass128002"><b>Event</b></a>, multiplicity : 1</li></ul><a name="refrelation128642"></a>
+<table><tr><td><div class="element">Relation <b>&lt;composition&gt;</b></div></td></tr></table><p>Declaration :</p><ul><li>Uml : -  : <a href="index.html#refclass128386"><b>Meal</b></a>, multiplicity : 1</li></ul><a name="refrelation128898"></a>
+<table><tr><td><div class="element">Relation <b>&lt;composition&gt;</b></div></td></tr></table><p>Declaration :</p><ul><li>Uml : -  : <a href="index.html#refclass128258"><b>User</b></a>, multiplicity : 1</li></ul></div>
+</div>
+<p>All public operations : <a href="index.html#refoperation128002"><b>getPriceInComplete</b></a> , <a href="index.html#refoperation128258"><b>getReceivables</b></a> , <a href="index.html#refoperation128130"><b>isBalanced</b></a> </p>
+<a name="refclass128258"></a>
+<h2 class ="class">1.3 Class User</h2>
+<p>Declaration :</p><ul>
+</ul><div class="sub">
+<div class="sub">
+<a name="refattribute129538"></a>
+<table><tr><td><div class="element">Attribute <b>id</b></div></td></tr></table>
+<p>Declaration :</p><ul><li>Uml : - id : </li></ul><a name="refattribute129666"></a>
+<table><tr><td><div class="element">Attribute <b>username</b></div></td></tr></table>
+<p>Declaration :</p><ul><li>Uml : - username : </li></ul><a name="refattribute129794"></a>
+<table><tr><td><div class="element">Attribute <b>email</b></div></td></tr></table>
+<p>Declaration :</p><ul><li>Uml : - email : </li></ul><a name="refattribute129922"></a>
+<table><tr><td><div class="element">Attribute <b>password</b></div></td></tr></table>
+<p>Declaration :</p><ul><li>Uml : - password : </li></ul><a name="refattribute131330"></a>
+<table><tr><td><div class="element">Attribute <b>roles</b></div></td></tr></table>
+<p>Declaration :</p><ul><li>Uml : - roles : </li></ul><a name="refrelation129026"></a>
+<table><tr><td><div class="element">Relation <b>&lt;composition&gt;</b></div></td></tr></table><p>Declaration :</p><ul><li>Uml : -  : <a href="index.html#refclass128130"><b>Consumption</b></a>, multiplicity : 1</li></ul><a name="refrelation129282"></a>
+<table><tr><td><div class="element">Relation <b>&lt;composition&gt;</b></div></td></tr></table><p>Declaration :</p><ul><li>Uml : -  : <a href="index.html#refclass128514"><b>Donation</b></a>, multiplicity : 1</li></ul></div>
+</div>
+<a name="refclass128386"></a>
+<h2 class ="class">1.4 Class Meal</h2>
+<p>Declaration :</p><ul>
+</ul><div class="sub">
+<div class="sub">
+<a name="refattribute130050"></a>
+<table><tr><td><div class="element">Attribute <b>id</b></div></td></tr></table>
+<p>Declaration :</p><ul><li>Uml : - id : </li></ul><a name="refattribute130178"></a>
+<table><tr><td><div class="element">Attribute <b>name</b></div></td></tr></table>
+<p>Declaration :</p><ul><li>Uml : - name : </li></ul><a name="refattribute130306"></a>
+<table><tr><td><div class="element">Attribute <b>price</b></div></td></tr></table>
+<p>Declaration :</p><ul><li>Uml : - price : </li></ul><a name="refattribute130434"></a>
+<table><tr><td><div class="element">Attribute <b>description</b></div></td></tr></table>
+<p>Declaration :</p><ul><li>Uml : - description : </li></ul><a name="refrelation128770"></a>
+<table><tr><td><div class="element">Relation <b>&lt;composition&gt;</b></div></td></tr></table><p>Declaration :</p><ul><li>Uml : -  : <a href="index.html#refclass128130"><b>Consumption</b></a>, multiplicity : 1</li></ul></div>
+</div>
+<a name="refclass128514"></a>
+<h2 class ="class">1.5 Class Donation</h2>
+<p>Declaration :</p><ul>
+</ul><div class="sub">
+<div class="sub">
+<a name="refattribute130562"></a>
+<table><tr><td><div class="element">Attribute <b>id</b></div></td></tr></table>
+<p>Declaration :</p><ul><li>Uml : - id : </li></ul><a name="refattribute130690"></a>
+<table><tr><td><div class="element">Attribute <b>value</b></div></td></tr></table>
+<p>Declaration :</p><ul><li>Uml : - value : </li></ul><a name="refattribute130818"></a>
+<table><tr><td><div class="element">Attribute <b>user</b></div></td></tr></table>
+<p>Declaration :</p><ul><li>Uml : - user : </li></ul><a name="refrelation129154"></a>
+<table><tr><td><div class="element">Relation <b>&lt;composition&gt;</b></div></td></tr></table><p>Declaration :</p><ul><li>Uml : -  : <a href="index.html#refclass128258"><b>User</b></a>, multiplicity : 1</li></ul><a name="refrelation129794"></a>
+<table><tr><td><div class="element">Relation <b>&lt;aggregation&gt;</b></div></td></tr></table><p>Declaration :</p><ul><li>Uml : -  : <a href="index.html#refclass128642"><b>CashBox</b></a></li></ul></div>
+</div>
+<a name="refclass128642"></a>
+<h2 class ="class">1.6 Class CashBox</h2>
+<p>Declaration :</p><ul>
+</ul><div class="sub">
+<div class="sub">
+<a name="refattribute130946"></a>
+<table><tr><td><div class="element">Attribute <b>id</b></div></td></tr></table>
+<p>Declaration :</p><ul><li>Uml : - id : </li></ul><a name="refattribute131074"></a>
+<table><tr><td><div class="element">Attribute <b>donations</b></div></td></tr></table>
+<p>Declaration :</p><ul><li>Uml : - donations : </li></ul><a name="refattribute131202"></a>
+<table><tr><td><div class="element">Attribute <b>events</b></div></td></tr></table>
+<p>Declaration :</p><ul><li>Uml : - events : </li></ul><a name="refrelation129410"></a>
+<table><tr><td><div class="element">Relation <b>&lt;aggregation&gt;</b></div></td></tr></table><p>Declaration :</p><ul><li>Uml : -  : <a href="index.html#refclass128002"><b>Event</b></a></li></ul><a name="refrelation129666"></a>
+<table><tr><td><div class="element">Relation <b>&lt;aggregation&gt;</b></div></td></tr></table><p>Declaration :</p><ul><li>Uml : -  : <a href="index.html#refclass128514"><b>Donation</b></a></li></ul></div>
+</div>
+<p>All public operations : <a href="index.html#refoperation128002"><b>getPriceInComplete</b></a> , <a href="index.html#refoperation128258"><b>getReceivables</b></a> , <a href="index.html#refoperation128130"><b>isBalanced</b></a> </p>
+<a name="refclass128770"></a>
+<h2 class ="class">1.7 Class ComputePricesAware</h2>
+<p>Declaration :</p><ul>
+<li>Java : package interface ComputePricesAware </li><li>Php :  interface ComputePricesAware </li></ul><p>Directly inherited by : <a href="index.html#refclass128642"><b>CashBox</b></a> <a href="index.html#refclass128130"><b>Consumption</b></a> <a href="index.html#refclass128002"><b>Event</b></a> </p>
+<p>Stereotype: interface</p>
+<div class="sub">
+<div class="sub">
+<a name="refoperation128002"></a>
+<table><tr><td><div class="element">Operation <b>getPriceInComplete</b></div></td></tr></table><p>Declaration :</p><ul><li>Uml : + getPriceInComplete() : </li></ul><a name="refoperation128130"></a>
+<table><tr><td><div class="element">Operation <b>isBalanced</b></div></td></tr></table><p>Declaration :</p><ul><li>Uml : + isBalanced() : </li></ul><a name="refoperation128258"></a>
+<table><tr><td><div class="element">Operation <b>getReceivables</b></div></td></tr></table><p>Declaration :</p><ul><li>Uml : + getReceivables() : </li></ul></div>
+</div>
+<p>All public operations : <a href="index.html#refoperation128002"><b>getPriceInComplete</b></a> , <a href="index.html#refoperation128258"><b>getReceivables</b></a> , <a href="index.html#refoperation128130"><b>isBalanced</b></a> </p>
+</div>
+</body>
+</html>

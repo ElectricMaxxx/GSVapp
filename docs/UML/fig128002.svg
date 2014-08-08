@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Bouml (http://bouml.free.fr/) -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="779" height="605" version="1.1" xmlns="http://www.w3.org/2000/svg">
+<g>
+	<rect fill="#808080" stroke="none" stroke-opacity="1" x="223" y="173" width="3" height="119" />
+	<rect fill="#808080" stroke="none" stroke-opacity="1" x="143" y="289" width="83" height="3" />
+	<rect fill="#ffffc0" stroke="black" stroke-width="1" stroke-opacity="1" x="139" y="169" width="84" height="120" />
+	<text font-family="Helvetica" font-size="9" fill="#000000" xml:space="preserve" font-weight="bold" text-anchor="middle" x="181" y="180">Event</text>
+	<line stroke="black" stroke-opacity="1" x1="139" y1="189" x2="223" y2="189" />
+	<text font-family="Helvetica" font-size="9" fill="#000000" xml:space="preserve" x="143" y="200">id</text>
+	<text font-family="Helvetica" font-size="9" fill="#000000" xml:space="preserve" x="143" y="218">date</text>
+	<text font-family="Helvetica" font-size="9" fill="#000000" xml:space="preserve" x="143" y="236">consumptions</text>
+	<text font-family="Helvetica" font-size="9" fill="#000000" xml:space="preserve" x="143" y="254">name</text>
+	<text font-family="Helvetica" font-size="9" fill="#000000" xml:space="preserve" x="143" y="272">description</text>
+	<line stroke="black" stroke-opacity="1" x1="139" y1="281" x2="223" y2="281" />
+</g>
+<g>
+	<ellipse fill="#ffffc0" stroke="black" stroke-width="1" stroke-opacity="1" cx="182" cy="22" rx="10" ry="10" />
+	<text font-family="Helvetica" font-size="9" fill="#000000" xml:space="preserve" font-weight="bold" text-anchor="middle" x="182" y="43">ComputePricesAware</text>
+	<line stroke="black" stroke-opacity="1" x1="115" y1="52" x2="249" y2="52" />
+	<line stroke="black" stroke-opacity="1" x1="115" y1="60" x2="249" y2="60" />
+	<text font-family="Helvetica" font-size="9" fill="#000000" xml:space="preserve" x="119" y="71">getPriceInComplete()</text>
+	<text font-family="Helvetica" font-size="9" fill="#000000" xml:space="preserve" x="119" y="89">isBalanced()</text>
+	<text font-family="Helvetica" font-size="9" fill="#000000" xml:space="preserve" x="119" y="107">getReceivables()</text>
+</g>
+<g>
+	<rect fill="#808080" stroke="none" stroke-opacity="1" x="430" y="155" width="3" height="155" />
+	<rect fill="#808080" stroke="none" stroke-opacity="1" x="322" y="307" width="111" height="3" />
+	<rect fill="#ffffc0" stroke="black" stroke-width="1" stroke-opacity="1" x="318" y="151" width="112" height="156" />
+	<text font-family="Helvetica" font-size="9" fill="#000000" xml:space="preserve" font-weight="bold" text-anchor="middle" x="374" y="162">Consumption</text>
+	<line stroke="black" stroke-opacity="1" x1="318" y1="171" x2="430" y2="171" />
+	<text font-family="Helvetica" font-size="9" fill="#000000" xml:space="preserve" x="322" y="182">id</text>
+	<text font-family="Helvetica" font-size="9" fill="#000000" xml:space="preserve" x="322" y="200">user</text>
+	<text font-family="Helvetica" font-size="9" fill="#000000" xml:space="preserve" x="322" y="218">event</text>
+	<text font-family="Helvetica" font-size="9" fill="#000000" xml:space="preserve" x="322" y="236">meal</text>
+	<text font-family="Helvetica" font-size="9" fill="#000000" xml:space="preserve" x="322" y="254">amountOf</text>
+	<text font-family="Helvetica" font-size="9" fill="#000000" xml:space="preserve" x="322" y="272">currentPriceOfMeal</text>
+	<text font-family="Helvetica" font-size="9" fill="#000000" xml:space="preserve" x="322" y="290">state</text>
+	<line stroke="black" stroke-opacity="1" x1="318" y1="299" x2="430" y2="299" />
+</g>
+<g>
+	<rect fill="#808080" stroke="none" stroke-opacity="1" x="410" y="371" width="3" height="119" />
+	<rect fill="#808080" stroke="none" stroke-opacity="1" x="352" y="487" width="61" height="3" />
+	<rect fill="#ffffc0" stroke="black" stroke-width="1" stroke-opacity="1" x="348" y="367" width="62" height="120" />
+	<text font-family="Helvetica" font-size="9" fill="#000000" xml:space="preserve" font-weight="bold" text-anchor="middle" x="379" y="378">User</text>
+	<line stroke="black" stroke-opacity="1" x1="348" y1="387" x2="410" y2="387" />
+	<text font-family="Helvetica" font-size="9" fill="#000000" xml:space="preserve" x="352" y="398">id</text>
+	<text font-family="Helvetica" font-size="9" fill="#000000" xml:space="preserve" x="352" y="416">username</text>
+	<text font-family="Helvetica" font-size="9" fill="#000000" xml:space="preserve" x="352" y="434">email</text>
+	<text font-family="Helvetica" font-size="9" fill="#000000" xml:space="preserve" x="352" y="452">password</text>
+	<text font-family="Helvetica" font-size="9" fill="#000000" xml:space="preserve" x="352" y="470">roles</text>
+	<line stroke="black" stroke-opacity="1" x1="348" y1="479" x2="410" y2="479" />
+</g>
+<g>
+	<polygon fill="#c0ffff" stroke="black" stroke-opacity="1" points="-2,7 98,7 98,17 108,17 108,133 -2,133 -2,7" />
+	<line stroke="black" stroke-opacity="1" x1="98" y1="7" x2="108" y2="17" />
+	<text font-family="Helvetica" font-size="9" fill="#000000" xml:space="preserve" x="8" y="33">Die Kasse selbst</text>
+	<text font-family="Helvetica" font-size="9" fill="#000000" xml:space="preserve" x="8" y="50">dient nur virtuell</text>
+	<text font-family="Helvetica" font-size="9" fill="#000000" xml:space="preserve" x="8" y="67">um alle</text>
+	<text font-family="Helvetica" font-size="9" fill="#000000" xml:space="preserve" x="8" y="84">Ausgaben/Einna</text>
+	<text font-family="Helvetica" font-size="9" fill="#000000" xml:space="preserve" x="8" y="101">hmen</text>
+	<text font-family="Helvetica" font-size="9" fill="#000000" xml:space="preserve" x="8" y="118">zusammen zu</text>
+	<text font-family="Helvetica" font-size="9" fill="#000000" xml:space="preserve" x="8" y="135">haben.</text>
+</g>
+<g>
+	<polygon fill="#c0ffff" stroke="black" stroke-opacity="1" points="76,503 526,503 526,513 536,513 536,593 76,593 76,503" />
+	<line stroke="black" stroke-opacity="1" x1="526" y1="503" x2="536" y2="513" />
+	<text font-family="Helvetica" font-size="9" fill="#000000" xml:space="preserve" x="86" y="529">Dieses Objekt dient dazu einmalig Geld in die &quot;gesammte Kasse&quot; zu bekommen,</text>
+	<text font-family="Helvetica" font-size="9" fill="#000000" xml:space="preserve" x="86" y="546">da diese sonst bereits mit der ersten Vorbestellung, die nicht gleich bezahlt wird</text>
+	<text font-family="Helvetica" font-size="9" fill="#000000" xml:space="preserve" x="86" y="563">im Minus ist. Um sich einen Überblick über den Kassenstand pro Event zu</text>
+	<text font-family="Helvetica" font-size="9" fill="#000000" xml:space="preserve" x="86" y="580">machen implementiert das Event selbst das ComputePriceAware Interface.</text>
+</g>
+<g>
+	<rect fill="#808080" stroke="none" stroke-opacity="1" x="94" y="211" width="3" height="83" />
+	<rect fill="#808080" stroke="none" stroke-opacity="1" x="36" y="291" width="61" height="3" />
+	<rect fill="#ffffc0" stroke="black" stroke-width="1" stroke-opacity="1" x="32" y="207" width="62" height="84" />
+	<text font-family="Helvetica" font-size="9" fill="#000000" xml:space="preserve" font-weight="bold" text-anchor="middle" x="63" y="218">CashBox</text>
+	<line stroke="black" stroke-opacity="1" x1="32" y1="227" x2="94" y2="227" />
+	<text font-family="Helvetica" font-size="9" fill="#000000" xml:space="preserve" x="36" y="238">id</text>
+	<text font-family="Helvetica" font-size="9" fill="#000000" xml:space="preserve" x="36" y="256">donations</text>
+	<text font-family="Helvetica" font-size="9" fill="#000000" xml:space="preserve" x="36" y="274">events</text>
+	<line stroke="black" stroke-opacity="1" x1="32" y1="283" x2="94" y2="283" />
+</g>
+<g>
+	<rect fill="#808080" stroke="none" stroke-opacity="1" x="582" y="181" width="3" height="101" />
+	<rect fill="#808080" stroke="none" stroke-opacity="1" x="518" y="279" width="67" height="3" />
+	<rect fill="#ffffc0" stroke="black" stroke-width="1" stroke-opacity="1" x="514" y="177" width="68" height="102" />
+	<text font-family="Helvetica" font-size="9" fill="#000000" xml:space="preserve" font-weight="bold" text-anchor="middle" x="548" y="188">Meal</text>
+	<line stroke="black" stroke-opacity="1" x1="514" y1="197" x2="582" y2="197" />
+	<text font-family="Helvetica" font-size="9" fill="#000000" xml:space="preserve" x="518" y="208">id</text>
+	<text font-family="Helvetica" font-size="9" fill="#000000" xml:space="preserve" x="518" y="226">name</text>
+	<text font-family="Helvetica" font-size="9" fill="#000000" xml:space="preserve" x="518" y="244">price</text>
+	<text font-family="Helvetica" font-size="9" fill="#000000" xml:space="preserve" x="518" y="262">description</text>
+	<line stroke="black" stroke-opacity="1" x1="514" y1="271" x2="582" y2="271" />
+</g>
+<g>
+	<rect fill="#808080" stroke="none" stroke-opacity="1" x="93" y="389" width="3" height="83" />
+	<rect fill="#808080" stroke="none" stroke-opacity="1" x="39" y="469" width="57" height="3" />
+	<rect fill="#ffffc0" stroke="black" stroke-width="1" stroke-opacity="1" x="35" y="385" width="58" height="84" />
+	<text font-family="Helvetica" font-size="9" fill="#000000" xml:space="preserve" font-weight="bold" text-anchor="middle" x="64" y="396">Donation</text>
+	<line stroke="black" stroke-opacity="1" x1="35" y1="405" x2="93" y2="405" />
+	<text font-family="Helvetica" font-size="9" fill="#000000" xml:space="preserve" x="39" y="416">id</text>
+	<text font-family="Helvetica" font-size="9" fill="#000000" xml:space="preserve" x="39" y="434">value</text>
+	<text font-family="Helvetica" font-size="9" fill="#000000" xml:space="preserve" x="39" y="452">user</text>
+	<line stroke="black" stroke-opacity="1" x1="35" y1="461" x2="93" y2="461" />
+</g>
+<g>
+	<polygon fill="#c0ffff" stroke="black" stroke-opacity="1" points="493,26 753,26 753,36 763,36 763,114 493,114 493,26" />
+	<line stroke="black" stroke-opacity="1" x1="753" y1="26" x2="763" y2="36" />
+	<text font-family="Helvetica" font-size="9" fill="#000000" xml:space="preserve" x="503" y="52">Jede Verzehrung entspricht einer Bestellung</text>
+	<text font-family="Helvetica" font-size="9" fill="#000000" xml:space="preserve" x="503" y="69">vor dem Event oder einem Nachtrag.</text>
+	<text font-family="Helvetica" font-size="9" fill="#000000" xml:space="preserve" x="503" y="86">Beim Erstellen wird der aktuelle Preis der</text>
+	<text font-family="Helvetica" font-size="9" fill="#000000" xml:space="preserve" x="503" y="103">jeweiligen Speise fixiert. </text>
+</g>
+<g>
+	<polygon fill="#c0ffff" stroke="black" stroke-opacity="1" points="505,377 757,377 757,387 767,387 767,481 505,481 505,377" />
+	<line stroke="black" stroke-opacity="1" x1="757" y1="377" x2="767" y2="387" />
+	<text font-family="Helvetica" font-size="9" fill="#000000" xml:space="preserve" x="515" y="403">Diese Nutzer sollten ebenfalls auch user im</text>
+	<text font-family="Helvetica" font-size="9" fill="#000000" xml:space="preserve" x="515" y="420">SecurityContext der Applikation sein, denn</text>
+	<text font-family="Helvetica" font-size="9" fill="#000000" xml:space="preserve" x="515" y="437">damit könnte man mit Ihren Rollen einfach</text>
+	<text font-family="Helvetica" font-size="9" fill="#000000" xml:space="preserve" x="515" y="454">Zugriff beschränken/erlauben oder</text>
+	<text font-family="Helvetica" font-size="9" fill="#000000" xml:space="preserve" x="515" y="471">gesonderte Listen/Ansichten ausspielen.</text>
+</g>
+<g>
+	<polygon fill="#c0ffff" stroke="black" stroke-opacity="1" points="301,31 441,31 441,41 451,41 451,135 301,135 301,31" />
+	<line stroke="black" stroke-opacity="1" x1="441" y1="31" x2="451" y2="41" />
+	<text font-family="Helvetica" font-size="9" fill="#000000" xml:space="preserve" x="311" y="57">Einfaches Interface um</text>
+	<text font-family="Helvetica" font-size="9" fill="#000000" xml:space="preserve" x="311" y="74">sich bei</text>
+	<text font-family="Helvetica" font-size="9" fill="#000000" xml:space="preserve" x="311" y="91">implementierenden</text>
+	<text font-family="Helvetica" font-size="9" fill="#000000" xml:space="preserve" x="311" y="108">Klassen schnell einen</text>
+	<text font-family="Helvetica" font-size="9" fill="#000000" xml:space="preserve" x="311" y="125">Überblick über</text>
+	<text font-family="Helvetica" font-size="9" fill="#000000" xml:space="preserve" x="311" y="142">Haben/Soll  machen zu</text>
+	<text font-family="Helvetica" font-size="9" fill="#000000" xml:space="preserve" x="311" y="159">können.</text>
+</g>
+<g>
+	<line stroke="black" stroke-opacity="1" x1="182" y1="168" x2="182" y2="122" />
+	<line stroke="black" stroke-opacity="1" x1="182" y1="116" x2="176" y2="122" />
+	<line stroke="black" stroke-opacity="1" x1="182" y1="116" x2="188" y2="122" />
+	<line stroke="black" stroke-opacity="1" x1="176" y1="122" x2="188" y2="122" />
+</g>
+<g>
+	<line stroke-dasharray="4,4" stroke="black" stroke-opacity="1" x1="56" y1="133" x2="61" y2="206" />
+</g>
+<g>
+	<line stroke="black" stroke-opacity="1" x1="98" y1="244" x2="138" y2="244" />
+	<polygon fill="#ffffff" stroke="black" stroke-opacity="1" points="98,244 104,238 110,244 104,250" />
+</g>
+<g>
+	<line stroke-dasharray="4,4" stroke="black" stroke-opacity="1" x1="557" y1="114" x2="434" y2="190" />
+</g>
+<g>
+	<line stroke-dasharray="4,4" stroke="black" stroke-opacity="1" x1="504" y1="429" x2="414" y2="429" />
+</g>
+<g>
+	<line stroke="black" stroke-opacity="1" x1="317" y1="179" x2="247" y2="119" />
+	<line stroke="black" stroke-opacity="1" x1="243" y1="116" x2="243" y2="124" />
+	<line stroke="black" stroke-opacity="1" x1="243" y1="116" x2="251" y2="115" />
+	<line stroke="black" stroke-opacity="1" x1="243" y1="124" x2="251" y2="115" />
+</g>
+<g>
+	<line stroke="black" stroke-opacity="1" x1="434" y1="230" x2="513" y2="230" />
+	<polygon fill="#000000" stroke="black" stroke-opacity="1" points="434,230 440,224 446,230 440,236" />
+</g>
+<g>
+	<line stroke="black" stroke-opacity="1" x1="227" y1="231" x2="317" y2="231" />
+	<polygon fill="#ffffff" stroke="black" stroke-opacity="1" points="227,231 233,225 239,231 233,237" />
+</g>
+<g>
+	<line stroke="black" stroke-opacity="1" x1="377" y1="311" x2="378" y2="366" />
+	<polygon fill="#000000" stroke="black" stroke-opacity="1" points="377,311 383,316 377,322 371,317" />
+</g>
+<g>
+	<line stroke="black" stroke-opacity="1" x1="91" y1="206" x2="143" y2="121" />
+	<line stroke="black" stroke-opacity="1" x1="147" y1="116" x2="138" y2="117" />
+	<line stroke="black" stroke-opacity="1" x1="147" y1="116" x2="148" y2="124" />
+	<line stroke="black" stroke-opacity="1" x1="138" y1="117" x2="148" y2="124" />
+</g>
+<g>
+	<line stroke-dasharray="4,4" stroke="black" stroke-opacity="1" x1="206" y1="293" x2="287" y2="502" />
+</g>
+<g>
+	<line stroke-dasharray="4,4" stroke="black" stroke-opacity="1" x1="300" y1="74" x2="249" y2="69" />
+</g>
+<g>
+	<line stroke-dasharray="4,4" stroke="black" stroke-opacity="1" x1="97" y1="443" x2="217" y2="502" />
+</g>
+<g>
+	<line stroke="black" stroke-opacity="1" x1="97" y1="429" x2="347" y2="429" />
+	<polygon fill="#000000" stroke="black" stroke-opacity="1" points="97,429 103,423 109,429 103,435" />
+</g>
+<g>
+	<line stroke="black" stroke-opacity="1" x1="65" y1="295" x2="65" y2="384" />
+	<polygon fill="#ffffff" stroke="black" stroke-opacity="1" points="65,295 71,301 65,307 59,301" />
+</g>
+<g>
+	<text font-family="Helvetica" font-size="9" fill="#000000" xml:space="preserve" x="361" y="354">1</text>
+</g>
+<g>
+	<text font-family="Helvetica" font-size="9" fill="#000000" xml:space="preserve" x="237" y="248">1</text>
+</g>
+<g>
+	<text font-family="Helvetica" font-size="9" fill="#000000" xml:space="preserve" x="444" y="247">1</text>
+</g>
+<g>
+	<text font-family="Helvetica" font-size="9" fill="#000000" xml:space="preserve" x="289" y="248">1..*</text>
+</g>
+<g>
+	<text font-family="Helvetica" font-size="9" fill="#000000" xml:space="preserve" x="360" y="328">1</text>
+</g>
+<g>
+	<text font-family="Helvetica" font-size="9" fill="#000000" xml:space="preserve" x="496" y="247">1</text>
+</g>
+<g>
+	<text font-family="Helvetica" font-size="9" fill="#000000" xml:space="preserve" x="107" y="446">1</text>
+</g>
+<g>
+	<text font-family="Helvetica" font-size="9" fill="#000000" xml:space="preserve" x="330" y="446">1</text>
+</g>
+</svg>
