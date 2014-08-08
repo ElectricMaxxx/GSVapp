@@ -18,7 +18,7 @@ ToDo-Liste zu vermerken:
 Jeder Punkt sollte unten in seiner Ausführung weiter durch dacht sein.
 
 ZF2 SkeletonApplikation
-~~~~~~~~~~~~~~~~~~~~~~~
+-----------------------
 
 Hier liegt der Schwerpunkt darin die Grundfunktionen des ZF2 schnell zu erfassen. Gewissen Parallelen
 zu Symonfy2 sind zu erkennen. So kann man services ebenfalls konfigurieren und somit DependencyInjection
@@ -29,7 +29,7 @@ und nur die benötigten Services "injecten". Ebenfalls werde ich die einfachen `
 übernehmen ehe ich jetzt noch eine TemplateEngine einführen müsste.
 
 Modelierung
-~~~~~~~~~~~
+-----------
 
 Hierbei habe ich begonnen einige Modele auf dem Papier zu skizieren - im Grunde nur Klassendiagramme
 in UML. Hier ist die digitale Form der Diagrame:
@@ -41,7 +41,7 @@ Für die Datenbank werden alle Relationen und Felder ebenso abgebildet. Ausgenom
 verschiednen Ausgaben jedoch Views vorstellen.
 
 Implementierung der Models
-~~~~~~~~~~~~~~~~~~~~~~~~~~
+--------------------------
 
 Hier habe ich mich aus Vertrauen und Erfahrung für die Nutzung von Doctrine2 für die Persistence-Aufgaben
 entschieden. Ich bin es gewohnt die Teile der Models, die zur für die Persistierung notwendig sind,
@@ -54,7 +54,7 @@ denn diese Funktionen sind besonders heikel, wenn es darum geht ein zuverlässig
 verschiedenen Statistiken zu erhalten. Die meisten anderen Funktionen sind meist nur Setter/Getter.
 
 Rudimentäre Implementierung der Controller
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+------------------------------------------
 
 Wie bereits oben beschrieben werde ich die Controller erst einmal so umsetzen dass Sie die sog.
 CRUD Methoden abbilden. Dazu müssen die `Routen` in der Modul-Konfiguration angelegt werden,
@@ -67,14 +67,14 @@ Formulare und Technik will, sollte auch neue Browser einsetzen)
 Beim Erstellen der Formulare werde ich dann sehen, wie sich diese erstellen lassen.
 
 AdminBereich zusammensetzen durch Menüs
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+---------------------------------------
 
 Hier werde ich einen `base-view` inklusive Menü erstellen. Dazu müsste ich bei den Controller
 am besten gleich einen abstrakten Controller umsetzen der mir die `partitional-views` gleich immer
 in den `base-view` einsetzt. `Nested Views` sollte hier das Zauberwort in der ZF-Dokumentation sein.
 
 Visueller Test (durch klicken)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+------------------------------
 
 In der kürze der Zeit ist es natürlich nicht Möglich große End-To-End-Tests zu schreiben oder gar alles
 einmal durchklicken zu lassen, darum werde ich diesen Punkt per Hand erledigen.
@@ -82,7 +82,7 @@ Jegliches Anlegen, Bearbeiten und Auflisten von den Kern-Entitäten (`Events` & 
 reibungslos funktionieren. Hierbei kann man gleich gewisse Validierungen checken
 
 Erstellen von speziellen AusgabeListen
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+--------------------------------------
 
 Für die speziellen Ausgaben werde ich sogenante `Blocks` auf einer Route namens `dashboard` erstellen.
 Dazu erstelle ich einen Controller, der kleine Services für die Erstellung der Daten aufruft. Diese
