@@ -135,7 +135,7 @@ class BaseController extends AbstractActionController
                 $this->redirect()->toRoute($this->baseRoutePattern);
             }
         }
-
+        $this->form->setAttribute('class', 'pure-form-stacked');
         return $this->renderView('add', array('form' => $this->form));
     }
 
