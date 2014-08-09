@@ -6,12 +6,15 @@ namespace Event\Doctrine\Orm;
 use Event\Exception\InvalidOperation;
 use Event\Model\ComputePricesAware;
 use Event\Exception\InvalidArgument;
+use Doctrine\ORM\Mapping as ORM;
 
 /**
  * A consumption describes a specific part of a meal with an amount
  * of a meal.
  *
  * @author Maximilian Berghoff <Maximilian.Berghoff@gmx.de>
+ *
+ * @ORM\Entity
  */
 class Consumption implements ComputePricesAware
 {
@@ -26,11 +29,17 @@ class Consumption implements ComputePricesAware
      * The primary key for the persistence.
      *
      * @var int
+     *
+     * @ORM\Id
+     * @ORM\Column(type="integer")
+     * @ORM\GeneratedValue
      */
     private $id;
 
     /**
      * @var Meal
+     *
+     * @ORM\ManyToOne(targetEntity="Event\Doctrine\Orm\Meal")
      */
     private $meal;
 
@@ -38,6 +47,8 @@ class Consumption implements ComputePricesAware
      * The amount of the mails for this consumption.
      *
      * @var int
+     *
+     * @ORM\Column(type="integer")
      */
     private $amountOf;
 
@@ -47,6 +58,8 @@ class Consumption implements ComputePricesAware
      * This one will be persisted and used for the calculations.
      *
      * @var int
+     *
+     * @ORM\Column(type="integer")
      */
     private $currentPriceOfMeal;
 
@@ -59,11 +72,15 @@ class Consumption implements ComputePricesAware
 
     /**
      * @var Event
+     *
+     * @ORM\ManyToOne(targetEntity="Event\Doctrine\Orm\Meal")
      */
     private $event;
 
     /**
      * @var User
+     *
+     * @ORM\ManyToOne(targetEntity="Event\Doctrine\Orm\User")
      */
     private $user;
 

@@ -4,8 +4,11 @@
 namespace Event\Form;
 
 
+use Doctrine\ORM\EntityManager;
+use Event\Form\Fieldset\Consumption;
 use Zend\Form\Form;
-
+use Zend\InputFilter\InputFilter;
+use Zend\Stdlib\Hydrator\ClassMethods as ClassMethodsHydrator;
 /**
  * Form creation class for the Meal model.
  *
@@ -13,9 +16,13 @@ use Zend\Form\Form;
  */
 class Event extends Form
 {
-    public function __construct($name = null)
+    public function __construct($name = null, EntityManager $manager)
     {
         parent::__construct($name);
+        $this
+            ->setAttribute('method', 'post')
+            ->setHydrator(new ClassMethodsHydrator(false))
+            ->setInputFilter(new InputFilter());
 
         $this->add(array(
             'name' => 'id',
@@ -38,6 +45,17 @@ class Event extends Form
                 'label' => 'Datum (TT.MM.JJJJ',
             ),
 
+        ));
+        $this->add(array(
+           'name' => 'consumptions',
+            'type' => 'Zend\Form\Element\Collection',
+            'options' => array(
+                'label' => 'Verzehrbestellungen oder Nachträge',
+                'should_create_template' => true,
+                'template_placeholder' => '__placeholder__',
+                'allow_add' => true,
+                'target_element' => new Consumption($manager),
+            ),
         ));
         $this->add(array(
             'type' => 'Csrf',

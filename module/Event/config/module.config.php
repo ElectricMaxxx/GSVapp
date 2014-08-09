@@ -45,7 +45,7 @@ return array(
                     $controller->setManager($serviceLocator->get('doctrine.entitymanager.orm_default'));
                     $controller->setBaseRoutePattern('event');
                     $controller->setClassName('Event\Doctrine\Orm\Event');
-                    $controller->setForm(new EventForm('meal'));
+                    $controller->setForm(new EventForm('meal', $serviceLocator->get('doctrine.entitymanager.orm_default')));
                     $controller->setInputFilter(new EventFilter());
 
                     return $controller;

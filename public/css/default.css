@@ -12,3 +12,19 @@
 
 .navigation {
 }
+
+fieldset.consumption label {
+    margin-right: 10px;
+    min-width: 200px;
+}
+fieldset.consumption label span {
+    margin: 10px;
+}
+
+fieldset.consumption input[type="number"] {
+    width: 50px;
+}
+
+fieldset.consumption label input, fieldset.consumption label select, fieldset.consumption label {
+   display: inline-block;
+}

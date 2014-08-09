@@ -130,13 +130,11 @@ class BaseController extends AbstractActionController
             }
 
             $this->form->setData($request->getPost());
-
             if ($this->form->isValid()) {
                 $this->preUpdate($subject);
                 $this->manager->persist($subject);
                 $this->manager->flush();
                 $this->postUpdate($subject);
-
                 return $this->redirect()->toRoute($this->baseRoutePattern);
             }
         }
@@ -215,12 +213,18 @@ class BaseController extends AbstractActionController
         ));
     }
 
-    protected function renderView($template, $data, $ownTemplate = false)
+    protected function renderView($template, $data)
     {
+        $ownTemplate = false;
+
         $baseView = new ViewModel(array('title' => 'my Title'));
         $baseView->setTemplate('event/base-view');
 
         $contentView = new ViewModel($data);
+        if (file_exists(__DIR__.'/../../../view/event/'.$this->baseRoutePattern.'/'.$template.'.phtml')) {
+            $ownTemplate = true;
+        }
+
         $template = $ownTemplate
             ? 'event/'.$this->baseRoutePattern.'/'.$template
             :'event/default/'.$template;

@@ -17,10 +17,12 @@ class User extends Form
     {
         parent::__construct($name);
 
+
         $this->add(array(
             'name' => 'id',
             'type' => 'Hidden',
         ));
+
         $this->add(array(
             'name'       => 'username',
             'type'       => 'Text',

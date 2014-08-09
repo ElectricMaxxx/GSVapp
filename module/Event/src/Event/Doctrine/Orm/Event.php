@@ -47,6 +47,12 @@ class Event implements ComputePricesAware, ExchangeArrayInterface
 
     /**
      * @var Consumption[]|ArrayCollection
+     *
+     * @ORM\ManyToMany(targetEntity="Event\Doctrine\Orm\Consumption",cascade={"persist"})
+     * @ORM\JoinTable(name="event_consumptions",
+     *      joinColumns={@ORM\JoinColumn(name="event_id", referencedColumnName="id")},
+     *      inverseJoinColumns={@ORM\JoinColumn(name="consumption_id", referencedColumnName="id")}
+     *      )
      */
     private $consumptions;
 
@@ -194,11 +200,10 @@ class Event implements ComputePricesAware, ExchangeArrayInterface
      */
     public function exchangeArray(array $data)
     {
-        foreach ($data as $key => $value) {
-            if (method_exists($this, 'set'.ucfirst($key))) {
-                $this->{'set'.ucfirst($key)}($value);
-            }
-        }
+        $this->id = (isset($data['id']))     ? $data['id']     : null;
+        $this->date = (isset($data['date']))
+            ? new \DateTime((string) $data['date'], new \DateTimeZone('Europe/Berlin'))
+            : null;
     }
 
     /**
