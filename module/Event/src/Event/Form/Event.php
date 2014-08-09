@@ -11,36 +11,33 @@ use Zend\Form\Form;
  *
  * @author Maximilian Berghoff <Maximilian.Berghoff@gmx.de>
  */
-class Meal extends Form
+class Event extends Form
 {
     public function __construct($name = null)
     {
-        parent::__construct('meal');
+        parent::__construct($name);
 
         $this->add(array(
             'name' => 'id',
             'type' => 'Hidden',
         ));
         $this->add(array(
-            'name' => 'name',
+            'name'       => 'name',
+            'type'       => 'Text',
+            'options'   => array(
+                'label' => 'Name des Events (default: Grillen am ...)',
+            ),
+        ));
+        $this->add(array(
+            'name' => 'date',
             'type' => 'Text',
-            'options' => array(
-                'label' => 'Name',
+            'attributes' => array(
+                'required' => 'required',
             ),
-        ));
-        $this->add(array(
-            'name' => 'price',
-            'type' => 'Number',
             'options' => array(
-                'label' => 'Preis',
+                'label' => 'Datum (TT.MM.JJJJ',
             ),
-        ));
-        $this->add(array(
-            'name' => 'description',
-            'type' =>  'Textarea',
-            'options' => array(
-                'label' => 'Beschreibung',
-            ),
+
         ));
         $this->add(array(
             'type' => 'Csrf',

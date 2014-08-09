@@ -3,8 +3,11 @@
  * Base configuration file for module Event
  */
 
+use Event\Controller\EventController;
 use Event\Controller\MealController;
 use Event\Controller\UserController;
+use Event\Form\Event as EventForm;
+use Event\Form\Filter\Event as EventFilter;
 use Event\Form\Filter\Meal;
 use Event\Form\Filter\User as UserFilter;
 use Event\Form\Meal as MealObject;
@@ -33,6 +36,17 @@ return array(
                     $controller->setClassName('Event\Doctrine\Orm\Meal');
                     $controller->setForm(new MealObject('meal'));
                     $controller->setInputFilter(new Meal());
+
+                    return $controller;
+            },
+            'Event\Controller\Event' => function (ControllerManager $cm) {
+                    $serviceLocator = $cm->getServiceLocator();
+                    $controller = new EventController();
+                    $controller->setManager($serviceLocator->get('doctrine.entitymanager.orm_default'));
+                    $controller->setBaseRoutePattern('event');
+                    $controller->setClassName('Event\Doctrine\Orm\Event');
+                    $controller->setForm(new EventForm('meal'));
+                    $controller->setInputFilter(new EventFilter());
 
                     return $controller;
             },
@@ -70,7 +84,20 @@ return array(
                     ),
                 ),
             ),
-
+            'event' => array(
+                'type'    => 'segment',
+                'options' => array(
+                    'route'    => '/event[/][:action][/:id]',
+                    'constraints' => array(
+                        'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                        'id'     => '[0-9]+',
+                    ),
+                    'defaults' => array(
+                        'controller' => 'Event\Controller\Event',
+                        'action'     => 'list',
+                    ),
+                ),
+            ),
         ),
     ),
 

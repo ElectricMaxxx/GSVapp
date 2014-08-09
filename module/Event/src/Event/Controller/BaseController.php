@@ -100,18 +100,88 @@ class BaseController extends AbstractActionController
             'list',
             array(
                 'list' => $this->getRepositoryForCurrentClass()->findAll()
-            )
+            ),
+            true
         );
     }
 
     public function editAction()
     {
-        return $this->renderView('edit', array());
+        $id = (int) $this->params()->fromRoute('id', 0);
+        if (!$id) {
+            return $this->redirect()->toRoute($this->baseRoutePattern, array(
+                'action' => 'add'
+            ));
+        }
+
+        $subject = $this->getRepositoryForCurrentClass()->find($id);
+        if (!$subject) {
+            $this->notFoundAction();
+        }
+        $this->postLoad($subject);
+
+        $this->form->bind($subject);
+        $this->form->get('submit')->setAttribute('value', 'Speichern');
+
+        $request = $this->getRequest();
+        if ($request->isPost()) {
+            if (null !== $this->inputFilter) {
+                $this->form->setInputFilter($this->inputFilter->getInputFilter());
+            }
+
+            $this->form->setData($request->getPost());
+
+            if ($this->form->isValid()) {
+                $this->preUpdate($subject);
+                $this->manager->persist($subject);
+                $this->manager->flush();
+                $this->postUpdate($subject);
+
+                return $this->redirect()->toRoute($this->baseRoutePattern);
+            }
+        }
+
+        return $this->renderView('update', array(
+            'actionPath' => $this->url()->fromRoute($this->baseRoutePattern, array('action' => 'edit', 'id' => $id)),
+            'id'         => $id,
+            'form'       => $this->form,
+            'title'      => 'Bearbeiten von: '.$subject,
+        ));
     }
 
     public function deleteAction()
     {
-        return $this->renderView('delete', array());
+        $id = (int) $this->params()->fromRoute('id', 0);
+        if (!$id) {
+            return $this->redirect()->toRoute($this->baseRoutePattern);
+        }
+
+        $subject = $this->getRepositoryForCurrentClass()->find($id);
+        if (!$subject) {
+            $this->notFoundAction();
+        }
+
+        $request = $this->getRequest();
+        if ($request->isPost()) {
+            $deleteButtonValue = $request->getPost('delete', 'Nein');
+
+            if ($deleteButtonValue == 'Ja') {
+                $this->preRemove($subject);
+                $this->manager->remove($subject);
+                $this->manager->flush();
+                $this->postRemove();
+            }
+
+            return $this->redirect()->toRoute($this->baseRoutePattern);
+        }
+
+        return $this->renderView('delete', array(
+            'actionPath' => $this->url()->fromRoute($this->baseRoutePattern, array('action' => 'delete', 'id' => $id)),
+            'title'      => 'Löschen von '.$subject,
+            'message'    => 'Wollen Sie '.$subject.' wirklich löschen?',
+            'id'         => $id,
+            'item'       => $subject
+        ));
     }
 
     public function addAction()
@@ -129,24 +199,32 @@ class BaseController extends AbstractActionController
 
             if ($this->form->isValid() && $subject instanceof ExchangeArrayInterface) {
                 $subject->exchangeArray($this->form->getData());
+                $this->prePersist($subject);
                 $this->manager->persist($subject);
                 $this->manager->flush();
+                $this->postPersist($subject);
 
                 $this->redirect()->toRoute($this->baseRoutePattern);
             }
         }
-        $this->form->setAttribute('class', 'pure-form-stacked');
 
-        return $this->renderView('add', array('form' => $this->form));
+        return $this->renderView('update', array(
+            'actionPath' => $this->url()->fromRoute($this->baseRoutePattern, array('action' => 'add')),
+            'form'       => $this->form,
+            'title'      => 'Hinzufügen',
+        ));
     }
 
-    protected function renderView($template, $data)
+    protected function renderView($template, $data, $ownTemplate = false)
     {
         $baseView = new ViewModel(array('title' => 'my Title'));
         $baseView->setTemplate('event/base-view');
 
         $contentView = new ViewModel($data);
-        $contentView->setTemplate('event/'.$this->baseRoutePattern.'/'.$template);
+        $template = $ownTemplate
+            ? 'event/'.$this->baseRoutePattern.'/'.$template
+            :'event/default/'.$template;
+        $contentView->setTemplate($template);
 
         $navigationView = new ViewModel();
         $navigationView->setTemplate('event/navigation');
@@ -157,5 +235,40 @@ class BaseController extends AbstractActionController
         ;
 
         return $baseView;
+    }
+
+    protected function preUpdate($object)
+    {
+
+    }
+
+    protected function postUpdate($object)
+    {
+
+    }
+
+    protected function prePersist($object)
+    {
+
+    }
+
+    protected function postPersist($object)
+    {
+
+    }
+
+    protected function postLoad($object)
+    {
+
+    }
+
+    protected function preRemove($object)
+    {
+
+    }
+
+    protected function postRemove()
+    {
+
     }
 }

@@ -4,24 +4,34 @@ namespace Event\Doctrine\Orm;
 
 use Event\Model\ComputePricesAware;
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\ORM\Mapping as ORM;
+use Event\Model\ExchangeArrayInterface;
 
 /**
  * An event is an meal/barbecue on a specific date with all its consumptions.
  * User that just take part, can be added by mapping an empty consumptions.
  *
  * @author Maximilian Berghoff <Maximilian.Berghoff@gmx.de>
+ *
+ * @ORM\Entity
  */
-class Event implements ComputePricesAware
+class Event implements ComputePricesAware, ExchangeArrayInterface
 {
     /**
      * The primary key for the persistence.
      *
      * @var int
+     *
+     * @ORM\Id
+     * @ORM\Column(type="integer")
+     * @ORM\GeneratedValue
      */
     private $id;
 
     /**
      * @var \DateTime
+     *
+     * @ORM\Column(type="date")
      */
     private $date;
 
@@ -30,6 +40,8 @@ class Event implements ComputePricesAware
      * of a constant and the date as default.
      *
      * @var string
+     *
+     * @ORM\Column(type="string")
      */
     private $name;
 
@@ -169,5 +181,31 @@ class Event implements ComputePricesAware
         }
 
         return $receivables;
+    }
+
+    public function __toString()
+    {
+        return $this->getName();
+    }
+
+
+    /**
+     * {@inheritDoc}
+     */
+    public function exchangeArray(array $data)
+    {
+        foreach ($data as $key => $value) {
+            if (method_exists($this, 'set'.ucfirst($key))) {
+                $this->{'set'.ucfirst($key)}($value);
+            }
+        }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getArrayCopy()
+    {
+        return get_object_vars($this);
     }
 }

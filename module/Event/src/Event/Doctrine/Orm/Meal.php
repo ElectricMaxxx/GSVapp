@@ -126,4 +126,17 @@ class Meal implements ExchangeArrayInterface
             }
         }
     }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getArrayCopy()
+    {
+        return get_object_vars($this);
+    }
+
+    public function __toString()
+    {
+        return $this->getName();
+    }
 }

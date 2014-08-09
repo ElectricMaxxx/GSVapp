@@ -17,4 +17,12 @@ interface ExchangeArrayInterface
      * @param array $data
      */
     public function exchangeArray(array $data);
+
+    /**
+     * Helper method for the form to get the properties of an
+     * entity as an array.
+     *
+     * @return array
+     */
+    public function getArrayCopy();
 }

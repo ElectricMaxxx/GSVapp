@@ -23,12 +23,12 @@ $this->headTitle($title);
             <td><?php echo $this->escapeHtml($meal->getDescription());?></td>
             <td>
                 <a href="<?php echo $this->url('meal', array(
-                    'action'=>'add',
-                    'id' => $meal->id
+                    'action'=>'edit',
+                    'id' => $meal->getId()
                 ));?>">Bearbeiten</a>
                 <a href="<?php echo $this->url('meal', array(
                     'action'=>'delete',
-                    'id' => $meal->id
+                    'id' => $meal->getId()
                 ));?>">Löschen</a>
             </td>
         </tr>

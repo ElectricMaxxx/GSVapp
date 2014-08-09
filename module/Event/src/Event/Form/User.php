@@ -22,18 +22,28 @@ class User extends Form
             'type' => 'Hidden',
         ));
         $this->add(array(
-            'name' => 'username',
-            'type' => 'Text',
-            'options' => array(
+            'name'       => 'username',
+            'type'       => 'Text',
+            'attributes' => array(
+                'required' => 'required',
+            ),
+            'options'   => array(
                 'label' => 'Username',
             ),
         ));
         $this->add(array(
             'name' => 'email',
-            'type' => 'Text',
+            'type' => 'Email',
+            'attributes' => array(
+                'required' => 'required',
+            ),
             'options' => array(
                 'label' => 'Email',
             ),
+        ));
+        $this->add(array(
+            'type' => 'Csrf',
+            'name' => 'security',
         ));
         $this->add(array(
             'name' => 'submit',
@@ -41,7 +51,10 @@ class User extends Form
             'attributes' => array(
                 'value' => 'Go',
                 'id' => 'submitbutton',
+                'class' => 'button-success pure-button'
             ),
         ));
+
+        $this->setAttribute('class', 'pure-form-stacked');
     }
 }

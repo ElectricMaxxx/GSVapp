@@ -1,0 +1,34 @@
+<?php
+$title = 'Mitglieder';
+$this->headTitle($title);
+?>
+<h1><?php echo $this->escapeHtml($title); ?></h1>
+<p>
+    <a href="<?php echo $this->url('event', array('action'=>'add'));?>">Neuen Grilltermin anlegen</a>
+</p>
+
+<table class="pure-table pure-table-horizontal">
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Datum</th>
+        <th>Optionen</th>
+    </tr>
+    <?php foreach ($list as $event) : ?>
+        <tr>
+            <td><?php echo $this->escapeHtml($event->getId());?></td>
+            <td><?php echo $this->escapeHtml($event->getName());?></td>
+            <td><?php echo $this->escapeHtml($event->getDate()->format('d.m.Y'));?></td>
+            <td>
+                <a href="<?php echo $this->url('event', array(
+                    'action'=>'edit',
+                    'id' => $event->getId()
+                ));?>">Bearbeiten</a>&nbsp;
+                <a href="<?php echo $this->url('event', array(
+                    'action'=>'delete',
+                    'id' => $event->getId()
+                ));?>">Löschen</a>
+            </td>
+        </tr>
+    <?php endforeach; ?>
+</table>
