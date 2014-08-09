@@ -7,7 +7,7 @@ $this->headTitle($title);
     <a href="<?php echo $this->url('meal', array('action'=>'add'));?>">Neue Speise hinzufügen</a>
 </p>
 
-<table class="table">
+<table class="pure-table-horizontal">
     <tr>
         <th>ID</th>
         <th>Name</th>
@@ -21,7 +21,7 @@ $this->headTitle($title);
             <td><?php echo $this->escapeHtml($meal->getName());?></td>
             <td><?php echo $this->escapeHtml($meal->getPrice());?></td>
             <td><?php echo $this->escapeHtml($meal->getDescription());?></td>
-            <td> Check check
+            <td>
                 <a href="<?php echo $this->url('meal', array(
                     'action'=>'add',
                     'id' => $meal->id

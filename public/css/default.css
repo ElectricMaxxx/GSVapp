@@ -1,0 +1,15 @@
+.header,
+.navigation,
+.content,
+.admin-content {
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.header, .logo {
+    height: 120px;
+}
+
+.navigation {
+    background: #191818
+}

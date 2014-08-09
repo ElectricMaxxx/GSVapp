@@ -3,14 +3,12 @@
 
 namespace Event\Controller;
 
-use Doctrine\Common\Persistence\ManagerRegistry;
 use Doctrine\ORM\EntityManager;
 use Event\Model\ExchangeArrayInterface;
-use SebastianBergmann\Exporter\Exception;
 use Zend\Form\Form;
 use Zend\InputFilter\InputFilterAwareInterface;
-use Zend\InputFilter\InputFilterInterface;
 use Zend\Mvc\Controller\AbstractActionController;
+use Zend\Navigation\Navigation;
 use Zend\View\Model\ViewModel;
 
 /**
@@ -98,17 +96,22 @@ class BaseController extends AbstractActionController
 
     public function indexAction()
     {
-        return new ViewModel(array('list' => $this->getRepositoryForCurrentClass()->findAll()), array());
+        return $this->renderView(
+            'index',
+            array(
+                'list' => $this->getRepositoryForCurrentClass()->findAll()
+            )
+        );
     }
 
     public function editAction()
     {
-
+        return $this->renderView('edit', array());
     }
 
     public function deleteAction()
     {
-
+        return $this->renderView('delete', array());
     }
 
     public function addAction()
@@ -133,6 +136,25 @@ class BaseController extends AbstractActionController
             }
         }
 
-        return array('form' => $this->form);
+        return $this->renderView('add', array('form' => $this->form));
+    }
+
+    protected function renderView($template, $data)
+    {
+        $baseView = new ViewModel(array());
+        $baseView->setTemplate('event/base-view');
+
+        $contentView = new ViewModel($data);
+        $contentView->setTemplate('event/'.$this->baseRoutePattern.'/'.$template);
+
+        $navigationView = new ViewModel();
+        $navigationView->setTemplate('event/navigation');
+
+        $baseView
+            ->addChild($contentView, 'content')
+            ->addChild($navigationView, 'navigation')
+        ;
+
+        return $baseView;
     }
 }
