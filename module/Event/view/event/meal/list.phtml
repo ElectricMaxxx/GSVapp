@@ -1,0 +1,36 @@
+<?php
+$title = 'Speisen';
+$this->headTitle($title);
+?>
+<h1><?php echo $this->escapeHtml($title); ?></h1>
+<p>
+    <a href="<?php echo $this->url('meal', array('action'=>'add'));?>">Neue Speise hinzufügen</a>
+</p>
+
+<table class="pure-table pure-table-horizontal">
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Preis</th>
+        <th>Beschreibung</th>
+        <th>Optionen</th>
+    </tr>
+    <?php foreach ($list as $meal) : ?>
+        <tr>
+            <td><?php echo $this->escapeHtml($meal->getId());?></td>
+            <td><?php echo $this->escapeHtml($meal->getName());?></td>
+            <td><?php echo $this->escapeHtml($meal->getPrice());?></td>
+            <td><?php echo $this->escapeHtml($meal->getDescription());?></td>
+            <td>
+                <a href="<?php echo $this->url('meal', array(
+                    'action'=>'add',
+                    'id' => $meal->id
+                ));?>">Bearbeiten</a>
+                <a href="<?php echo $this->url('meal', array(
+                    'action'=>'delete',
+                    'id' => $meal->id
+                ));?>">Löschen</a>
+            </td>
+        </tr>
+    <?php endforeach; ?>
+</table>

@@ -1,26 +1,24 @@
 <?php
-$title = 'Speisen';
+$title = 'Mitglieder';
 $this->headTitle($title);
 ?>
 <h1><?php echo $this->escapeHtml($title); ?></h1>
 <p>
-    <a href="<?php echo $this->url('meal', array('action'=>'add'));?>">Neue Speise hinzufügen</a>
+    <a href="<?php echo $this->url('user', array('action'=>'add'));?>">Neues Mitglied hinzufügen</a>
 </p>
 
-<table class="pure-table-horizontal">
+<table class="pure-table pure-table-horizontal">
     <tr>
         <th>ID</th>
         <th>Name</th>
-        <th>Preis</th>
-        <th>Beschreibung</th>
+        <th>Email</th>
         <th>Optionen</th>
     </tr>
     <?php foreach ($list as $meal) : ?>
         <tr>
             <td><?php echo $this->escapeHtml($meal->getId());?></td>
-            <td><?php echo $this->escapeHtml($meal->getName());?></td>
-            <td><?php echo $this->escapeHtml($meal->getPrice());?></td>
-            <td><?php echo $this->escapeHtml($meal->getDescription());?></td>
+            <td><?php echo $this->escapeHtml($meal->getUsername());?></td>
+            <td><?php echo $this->escapeHtml($meal->getEmail());?></td>
             <td>
                 <a href="<?php echo $this->url('meal', array(
                     'action'=>'add',

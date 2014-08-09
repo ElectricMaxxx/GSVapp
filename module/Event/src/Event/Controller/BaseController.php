@@ -94,10 +94,10 @@ class BaseController extends AbstractActionController
         return $this->manager->getRepository($this->className);
     }
 
-    public function indexAction()
+    public function listAction()
     {
         return $this->renderView(
-            'index',
+            'list',
             array(
                 'list' => $this->getRepositoryForCurrentClass()->findAll()
             )
@@ -136,12 +136,13 @@ class BaseController extends AbstractActionController
             }
         }
         $this->form->setAttribute('class', 'pure-form-stacked');
+
         return $this->renderView('add', array('form' => $this->form));
     }
 
     protected function renderView($template, $data)
     {
-        $baseView = new ViewModel(array());
+        $baseView = new ViewModel(array('title' => 'my Title'));
         $baseView->setTemplate('event/base-view');
 
         $contentView = new ViewModel($data);

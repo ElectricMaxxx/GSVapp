@@ -2,6 +2,7 @@
 
 
 namespace Event\Doctrine\Orm;
+
 use Doctrine\ORM\Mapping as ORM;
 use Event\Model\ExchangeArrayInterface;
 

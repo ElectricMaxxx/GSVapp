@@ -5,18 +5,24 @@ namespace Event\Doctrine\Orm;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Event\Doctrine\Orm\EventConsumption;
+use Doctrine\ORM\Mapping as ORM;
+use Event\Model\ExchangeArrayInterface;
 
 /**
  * Describes an user as an identity to take part an event and/or consume some meals.
- *
+ * @ORM\Entity
  * @author Maximilian Berghoff <Maximilian.Berghoff@gmx.de>
  */
-class User
+class User implements ExchangeArrayInterface
 {
     /**
      * The primary key for the persistence.
      *
      * @var int
+     *
+     * @ORM\Id
+     * @ORM\Column(type="integer")
+     * @ORM\GeneratedValue
      */
     private $id;
 
@@ -24,16 +30,20 @@ class User
      * Unique name of the user.
      *
      * @var string
+     *
+     * @ORM\Column(type="string")
      */
     private $username;
 
     /**
      * @var string
+     *
      */
     private $password;
 
     /**
      * @var string
+     * @ORM\Column(type="string")
      */
     private $email;
 
@@ -127,5 +137,17 @@ class User
     public function getEventConsumptions()
     {
         return $this->eventConsumptions;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function exchangeArray(array $data)
+    {
+        foreach ($data as $key => $value) {
+            if (method_exists($this, 'set'.ucfirst($key))) {
+                $this->{'set'.ucfirst($key)}($value);
+            }
+        }
     }
 }

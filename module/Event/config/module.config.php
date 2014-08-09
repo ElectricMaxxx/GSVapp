@@ -4,23 +4,37 @@
  */
 
 use Event\Controller\MealController;
+use Event\Controller\UserController;
 use Event\Form\Filter\Meal;
+use Event\Form\Filter\User as UserFilter;
 use Event\Form\Meal as MealObject;
+use Event\Form\User;
 use Zend\Mvc\Controller\ControllerManager;
 
 return array(
     'controllers' => array(
         'factories' => array(
-            'Event\Controller\Meal' => function (ControllerManager $cm) {
+            'Event\Controller\User' => function (ControllerManager $cm) {
                 $serviceLocator = $cm->getServiceLocator();
-                $controller = new MealController();
+                $controller = new UserController();
                 $controller->setManager($serviceLocator->get('doctrine.entitymanager.orm_default'));
-                $controller->setBaseRoutePattern('meal');
-                $controller->setClassName('Event\Doctrine\Orm\Meal');
-                $controller->setForm(new MealObject('meal'));
-                $controller->setInputFilter(new Meal());
+                $controller->setBaseRoutePattern('user');
+                $controller->setClassName('Event\Doctrine\Orm\User');
+                $controller->setForm(new User('user'));
+                $controller->setInputFilter(new UserFilter());
 
                 return $controller;
+            },
+            'Event\Controller\Meal' => function (ControllerManager $cm) {
+                    $serviceLocator = $cm->getServiceLocator();
+                    $controller = new MealController();
+                    $controller->setManager($serviceLocator->get('doctrine.entitymanager.orm_default'));
+                    $controller->setBaseRoutePattern('meal');
+                    $controller->setClassName('Event\Doctrine\Orm\Meal');
+                    $controller->setForm(new MealObject('meal'));
+                    $controller->setInputFilter(new Meal());
+
+                    return $controller;
             },
         ),
     ),
@@ -38,10 +52,25 @@ return array(
                     ),
                     'defaults' => array(
                         'controller' => 'Event\Controller\Meal',
-                        'action'     => 'index',
+                        'action'     => 'list',
                     ),
                 ),
             ),
+            'user' => array(
+                'type'    => 'segment',
+                'options' => array(
+                    'route'    => '/user[/][:action][/:id]',
+                    'constraints' => array(
+                        'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                        'id'     => '[0-9]+',
+                    ),
+                    'defaults' => array(
+                        'controller' => 'Event\Controller\User',
+                        'action'     => 'list',
+                    ),
+                ),
+            ),
+
         ),
     ),
 
