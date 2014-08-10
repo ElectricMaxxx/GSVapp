@@ -4,6 +4,8 @@
 namespace Event\Form;
 
 
+use Doctrine\Common\Persistence\ObjectManager;
+use Event\Form\Fieldset\Donation;
 use Zend\Form\Form;
 
 /**
@@ -13,7 +15,7 @@ use Zend\Form\Form;
  */
 class User extends Form
 {
-    public function __construct($name = null)
+    public function __construct($name = null, ObjectManager $manager)
     {
         parent::__construct($name);
 
@@ -41,6 +43,17 @@ class User extends Form
             ),
             'options' => array(
                 'label' => 'Email',
+            ),
+        ));
+        $this->add(array(
+            'name' => 'donations',
+            'type' => 'Zend\Form\Element\Collection',
+            'options' => array(
+                'label' => 'Gutschriften',
+                'should_create_template' => true,
+                'template_placeholder' => '__placeholder__',
+                'allow_add' => true,
+                'target_element' => new Donation($manager),
             ),
         ));
         $this->add(array(

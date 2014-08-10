@@ -4,7 +4,6 @@
 namespace Event\Doctrine\Orm;
 
 use Doctrine\Common\Collections\ArrayCollection;
-use Event\Doctrine\Orm\EventConsumption;
 use Doctrine\ORM\Mapping as ORM;
 use Event\Model\ExchangeArrayInterface;
 
@@ -48,16 +47,57 @@ class User implements ExchangeArrayInterface
     private $email;
 
     /**
+     * @var Donation[]|ArrayCollection
+     *
+     * @ORM\OneToMany(targetEntity="Event\Doctrine\Orm\Donation", mappedBy="user",cascade={"persist"})
+     */
+    private $donations;
+
+    public function __construct()
+    {
+        $eventConsumptions = array();
+        $this->donations = new ArrayCollection();
+    }
+
+    /**
+     * @param ArrayCollection|Donation[] $donations
+     */
+    public function setDonations($donations)
+    {
+        $this->donations = $donations;
+    }
+
+    /**
+     * @return ArrayCollection|Donation[]
+     */
+    public function getDonations()
+    {
+        return $this->donations;
+    }
+
+    /**
+     * @param Donation $donation
+     */
+    public function addDonation(Donation $donation)
+    {
+        $donation->setUser($this);
+        $this->donations->add($donation);
+    }
+
+    /**
+     * @param Donation $donation
+     */
+    public function removeDonation(Donation $donation)
+    {
+        $this->donations->remove($donation);
+    }
+
+    /**
      * Every user got a number of, so he took part on every of that events.
      *
      * @var EventConsumption[]|ArrayCollection
      */
     private $eventConsumptions;
-
-    public function __construct()
-    {
-        $this->consumptions = array();
-    }
 
     /**
      * @param string $email
@@ -124,7 +164,7 @@ class User implements ExchangeArrayInterface
     }
 
     /**
-     * @param \Doctrine\Common\Collections\ArrayCollection|\Event\Doctrine\Orm\EventConsumption[] $eventConsumptions
+     * @param ArrayCollection|\Event\Doctrine\Orm\EventConsumption[] $eventConsumptions
      */
     public function setEventConsumptions($eventConsumptions)
     {
@@ -132,7 +172,7 @@ class User implements ExchangeArrayInterface
     }
 
     /**
-     * @return \Doctrine\Common\Collections\ArrayCollection|\Event\Doctrine\Orm\EventConsumption[]
+     * @return ArrayCollection|\Event\Doctrine\Orm\EventConsumption[]
      */
     public function getEventConsumptions()
     {
@@ -144,11 +184,8 @@ class User implements ExchangeArrayInterface
      */
     public function exchangeArray(array $data)
     {
-        foreach ($data as $key => $value) {
-            if (method_exists($this, 'set'.ucfirst($key))) {
-                $this->{'set'.ucfirst($key)}($value);
-            }
-        }
+        $this->name = isset($data['name']) ? $data['name'] : null;
+        $this->name = isset($data['email']) ? $data['email'] : null;
     }
 
     /**

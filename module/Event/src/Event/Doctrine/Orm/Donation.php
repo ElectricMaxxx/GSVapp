@@ -2,11 +2,15 @@
 
 namespace Event\Doctrine\Orm;
 
+use Doctrine\ORM\Mapping as ORM;
+
 /**
  * A donation is a possibility to add some money to the CashBox or
  * solve empty states.
  *
  * @author Maximilian Berghoff <Maximilian.Berghoff@onit-gmbh.de>
+ *
+ * @ORM\Entity
  */
 class Donation
 {
@@ -14,6 +18,10 @@ class Donation
      * The primary key for the persistence.
      *
      * @var int
+     *
+     * @ORM\Id
+     * @ORM\Column(type="integer")
+     * @ORM\GeneratedValue
      */
     private $id;
 
@@ -21,11 +29,15 @@ class Donation
      * The value of the donation in euro cents.
      *
      * @var int
+     *
+     * @ORM\Column(type="integer")
      */
     private $value;
 
     /**
      * @var User ..., which does the donation, to get the money back - later, maybe.
+     *
+     * @ORM\ManyToOne(targetEntity="Event\Doctrine\Orm\User", inversedBy="donations", cascade={"persist"})
      */
     private $user;
 

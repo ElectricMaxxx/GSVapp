@@ -1,0 +1,39 @@
+<?php
+
+$this->headTitle($title);
+?>
+    <h1><?php echo $this->escapeHtml($title); ?></h1>
+<?php
+
+$form->setAttribute('action', $actionPath);
+$form->prepare();
+
+echo $this->form()->openTag($form);
+echo $this->formRow($this->form->get('id'));
+echo $this->formRow($this->form->get('username'));
+echo $this->formRow($this->form->get('email'));
+
+echo $this->formCollection($this->form->get('donations'));
+?>
+<br />
+<p>Leider steht das hinzufügne von Gutschriften noch nicht zur Verfügung.</p>
+<button class="pure-button pure-button-primary" onclick="return add_category()">Neue Gutschrift hinzufügen</button>
+<br />
+<br />
+<?php
+echo $this->formHidden($form->get('security'));
+echo $this->formElement($form->get('submit'));
+$this->form()->closeTag();
+?>
+
+<script type="text/javascript">
+    function add_category() {
+        var currentCount = $('form > fieldset > fieldset').length;
+        var template = $('form > fieldset > span').data('template');
+        template = template.replace(/__placeholder__/g, currentCount);
+
+        $('form > fieldset').append(template);
+
+        return false;
+    }
+</script>

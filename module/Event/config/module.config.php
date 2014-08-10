@@ -4,10 +4,13 @@
  */
 
 use Event\Controller\DashboardController;
+use Event\Controller\DonationController;
 use Event\Controller\EventController;
 use Event\Controller\MealController;
 use Event\Controller\StatisticController;
 use Event\Controller\UserController;
+use Event\Form\Donation as DonationForm;
+use Event\Form\Filter\Donation as DonationFilter;
 use Event\Form\Event as EventForm;
 use Event\Form\Filter\Event as EventFilter;
 use Event\Form\Filter\Meal;
@@ -26,7 +29,7 @@ return array(
                 $controller->setManager($serviceLocator->get('doctrine.entitymanager.orm_default'));
                 $controller->setBaseRoutePattern('user');
                 $controller->setClassName('Event\Doctrine\Orm\User');
-                $controller->setForm(new User('user'));
+                $controller->setForm(new User('user', $serviceLocator->get('doctrine.entitymanager.orm_default')));
                 $controller->setInputFilter(new UserFilter());
 
                 return $controller;
