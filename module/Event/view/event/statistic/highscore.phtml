@@ -1,0 +1,60 @@
+<?php
+
+$this->headTitle($title); ?>
+<h2>
+    <?=$title; ?>
+</h2>
+
+<?php
+$class = isset($options['class']) ? ' '.$options['class'] : null;
+$count = 1;
+?>
+
+<div class="list-filter">
+        <label for="meal">Filtern nach Speisen: </label>
+        <select id="meal_selection">
+            <option value="0">Wählen Sie eine Speise</option>
+            <?php foreach ($meals as $meal) : ?>
+                <option value="<?=$meal->getId()?>"
+                        <?=($meal->getId() === $mealId ? 'selected' : '')?>
+                    ><?=$meal->getName()?></option>
+            <?php endforeach; ?>
+        </select>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            mealSelect = document.getElementById('meal_selection')
+            mealSelect.onchange = function() {
+                var baseUrl = "<?=$this->url('statistic', array('action' => 'highscore'))?>";
+                window.location = baseUrl+"/"+this.value;
+            }
+        })
+    </script>
+</div>
+
+<div class="expandable-list<?=$class;?>">
+    <?php foreach ($user_consumptions as $user_consumption) : ?>
+        <div class="pure-g expandable-item">
+            <div class="pure-u-1">
+                <div class="pure-g expandable-head">
+
+                    <? foreach ($user_consumption as $consumption) : ?>
+                        <div class="pure-u-1-24">
+                            <?=$count?>
+                        </div>
+                        <div class="pure-u-23-24">
+                            <a
+                                href="<?=$this->url('user', array('action' => 'edit', 'id' => $consumption['user_id'])) ;?>"
+                                title="<?=$consumption['username']?> Bearbeiten">
+                                <?=$consumption['username']?>
+                            </a>
+                            &nbsp; &nbsp;
+                            Speise: <?=$consumption['meal_name']?>
+                            Häufigkeit: <?=$consumption[1]?>
+                        </div>
+                    <?php endforeach; ?>
+                </div>
+            </div>
+        </div>
+        <?php $count++; ?>
+    <?php endforeach; ?>
+</div>

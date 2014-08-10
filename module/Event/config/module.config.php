@@ -130,13 +130,14 @@ return array(
             'statistic' => array(
                 'type'    => 'segment',
                 'options' => array(
-                    'route'    => '/statistic[/][:action]',
+                    'route'    => '/statistic[/][:action][/:id]',
                     'constraints' => array(
                         'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                        'id'     => '[0-9]+',
                     ),
                     'defaults' => array(
                         'controller' => 'Event\Controller\Statistic',
-                        'action'     => 'steakHighscore',
+                        'action'     => 'cashBox',
                     ),
                 ),
             ),

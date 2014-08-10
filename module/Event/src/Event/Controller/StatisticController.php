@@ -5,15 +5,41 @@ namespace Event\Controller;
 
 
 use Doctrine\Common\Collections\ArrayCollection;
+use Event\Doctrine\Orm\Consumption;
 use Event\Doctrine\Orm\Event;
 use Event\Model\CashBox;
 
 class StatisticController extends BaseController
 {
-    public function steakHighscoreAction()
+    /**
+     * When no other meal id is given, the highscore is created by
+     * this one here.
+     *
+     * Normally an id should be provided by the request - select box for the "filter".
+     */
+    const DEFAULT_MEAL_ID = 2;
+
+    public function highscoreAction()
     {
-        return $this->renderView('steak-highscore', array(
-            'title' => 'Hier erscheint bald der Highscore'
+        $id = (int) $this->params()->fromRoute('id', 0);
+        $meal = $this->manager->find('Event\Doctrine\Orm\Meal', $id);
+        $mealId = $meal ? $meal->getId() : self::DEFAULT_MEAL_ID;
+        $persistedConsumptions = $this->manager
+            ->getRepository('Event\Doctrine\Orm\Consumption')
+            ->getHighscoreByMeal($mealId);
+        $consumptions = array();
+        foreach ($persistedConsumptions as $consumption) {
+            $consumptions[$consumption[1]][] = $consumption;
+        }
+
+        krsort($consumptions);
+        return $this->renderView('highscore', array(
+            'title'        => 'Hier erscheint bald der Highscore',
+            'user_consumptions' => $consumptions,
+            'meals'             => $this->manager
+                ->getRepository('Event\Doctrine\Orm\Meal')
+                ->findAll(),
+            'mealId' => $mealId
         ));
     }
 
