@@ -45,7 +45,7 @@ class StatisticController extends BaseController
 
     public function eventsAction()
     {
-        $events = $this->manager->getRepository('Event\Doctrine\Orm\Event')->findAll();
+        $events = $this->manager->getRepository('Event\Doctrine\Orm\Event')->findBy(array(), array('date' => 'ASC'));
 
         return $this->renderView('events', array(
             'title'  => 'Zusammenfassung der Grillveranstaltungen',
@@ -68,8 +68,8 @@ class StatisticController extends BaseController
                 if (!array_key_exists($id, $meals[$event->getId()])) {
                     $meals[$event->getId()][$id] = array(
                         'count' => $consumption->getAmountOf(),
-                        'name' => $consumption->getMeal()->getName(),
-                        'price' => $consumption->getMeal()->getPrice());
+                        'name'  => $consumption->getMeal()->getName(),
+                        'price' => $consumption->getCurrentPriceOfMeal());
                     continue;
                 }
 
@@ -82,7 +82,7 @@ class StatisticController extends BaseController
 
     public function cashBoxAction()
     {
-        $events = $this->manager->getRepository('Event\Doctrine\Orm\Event')->findAll();
+        $events = $this->manager->getRepository('Event\Doctrine\Orm\Event')->findBy(array(), array('date' => 'ASC'));
         $cashBox = new CashBox();
         $cashBox->setEvents(new ArrayCollection($events));
         return $this->renderView('cashBox', array(
