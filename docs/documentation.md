@@ -10,10 +10,10 @@ ToDo-Liste zu vermerken:
 * [x] ZF2 SkeletonApplikation zum laufen bringen und studieren
 * [x] Modelierung der Entitäten
 * [x] Implementierung der Models, incl. UnitTests
-* [ ] Rudimentäre Implementierung der Controller mit Templates, Forms, incl Routing und Konfiguration
-* [ ] AdminBereich zusammensetzen durch Menüs
-* [ ] Visueller Test (durch klicken)
-* [ ] Erstellen von speziellen AusgabeListen
+* [x] Rudimentäre Implementierung der Controller mit Templates, Forms, incl Routing und Konfiguration
+* [x] AdminBereich zusammensetzen durch Menüs
+* [x] Visueller Test (durch klicken)
+* [x] Erstellen von speziellen AusgabeListen
 
 Jeder Punkt sollte unten in seiner Ausführung weiter durch dacht sein.
 
