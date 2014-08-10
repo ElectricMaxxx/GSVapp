@@ -3,6 +3,7 @@
  * Base configuration file for module Event
  */
 
+use Event\Controller\DashboardController;
 use Event\Controller\EventController;
 use Event\Controller\MealController;
 use Event\Controller\UserController;
@@ -16,6 +17,7 @@ use Zend\Mvc\Controller\ControllerManager;
 
 return array(
     'controllers' => array(
+        'invokables' => array(),
         'factories' => array(
             'Event\Controller\User' => function (ControllerManager $cm) {
                 $serviceLocator = $cm->getServiceLocator();
@@ -50,6 +52,14 @@ return array(
 
                     return $controller;
             },
+            'Event\Controller\Dashboard' => function (ControllerManager $cm) {
+                    $serviceLocator = $cm->getServiceLocator();
+                    $controller = new DashboardController();
+                    $controller->setManager($serviceLocator->get('doctrine.entitymanager.orm_default'));
+                    $controller->setBaseRoutePattern('dashboard');
+
+                    return $controller;
+            }
         ),
     ),
 
@@ -95,6 +105,16 @@ return array(
                     'defaults' => array(
                         'controller' => 'Event\Controller\Event',
                         'action'     => 'list',
+                    ),
+                ),
+            ),
+            'dashboard' => array(
+                'type'    => 'segment',
+                'options' => array(
+                    'route'    => '/dashboard',
+                    'defaults' => array(
+                        'controller' => 'Event\Controller\Dashboard',
+                        'action'     => 'index',
                     ),
                 ),
             ),
