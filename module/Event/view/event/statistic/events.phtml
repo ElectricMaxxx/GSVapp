@@ -16,11 +16,10 @@ $class = isset($options['class']) ? ' '.$options['class'] : null
             <div class="pure-u-1">
                 <div class="pure-g expandable-head">
                     <div class="pure-u-1-2">
-                        <?=$event->getName()?> &nbsp;
                         <a
                             href="<?=$this->url('event', array('action' => 'edit', 'id' => $event->getId())) ;?>"
                             title="<?=$event->getName()?> Bearbeiten">
-                            Bearbeiten
+                            <?=$event->getName()?>
                         </a>
                     </div>
                     <div class="pure-u-1-2">

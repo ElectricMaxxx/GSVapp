@@ -15,7 +15,10 @@ echo $this->formRow($this->form->get('date'));
 
 echo $this->formCollection($this->form->get('consumptions'));
 ?>
-<button class="pure-button pure-button-primary" onclick="return add_category()">Neu</button>
+<br />
+<button class="pure-button pure-button-primary" onclick="return add_category()">Neuer Verzehr/Nachtrag</button>
+<br />
+<br />
 <?php
 echo $this->formHidden($form->get('security'));
 echo $this->formElement($form->get('submit'));
