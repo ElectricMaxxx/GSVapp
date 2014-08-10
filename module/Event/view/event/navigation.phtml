@@ -5,4 +5,10 @@
         <li><a href="<?= $this->url('meal');?>">Speisen verwalten</a></li>
         <li><a href="<?= $this->url('user');?>">Mitglieder verwalten</a></li>
     </ul>
+    <a href="<?= $this->url('statistic');?>" class="pure-menu-heading">Statistiken</a>
+    <ul>
+        <li><a href="<?= $this->url('statistic', array('action' => 'steakHighscore'));?>">SteakHighscore</a></li>
+        <li><a href="<?= $this->url('statistic', array('action' => 'events'));?>">Events</a></li>
+        <li><a href="<?= $this->url('statistic', array('action' => 'cashBox'));?>">Die Kasse</a></li>
+    </ul>
 </div>

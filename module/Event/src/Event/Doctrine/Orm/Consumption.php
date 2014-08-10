@@ -14,16 +14,17 @@ use Doctrine\ORM\Mapping as ORM;
  *
  * @author Maximilian Berghoff <Maximilian.Berghoff@gmx.de>
  *
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="Event\Doctrine\Orm\ConsumptionsRepository")
  */
 class Consumption implements ComputePricesAware
 {
     /**
      * Defining some constants for sane states
      */
-    const STATE_PRE_ORDERED = 'ordered';
-    const STATE_POST_SET = 'post_set';
-    const STATE_PAID = 'paid';
+    const STATE_NOT_SET = 0;
+    const STATE_PRE_ORDERED = 1;
+    const STATE_POST_SET = 2;
+    const STATE_PAID = 3;
 
     /**
      * The primary key for the persistence.
@@ -66,9 +67,11 @@ class Consumption implements ComputePricesAware
     /**
      * Need to be one of the constants defined above.
      *
-     * @var string
+     * @var int
+     *
+     * @ORM\Column(type="integer")
      */
-    private $currentState;
+    private $currentState = 0;
 
     /**
      * @var Event

@@ -4,6 +4,7 @@
 namespace Event\Form\Fieldset;
 
 
+use Event\Doctrine\Orm\Consumption as ConsumptionEntity;
 use Zend\Form\Fieldset;
 use Zend\InputFilter\InputFilterProviderInterface;
 use DoctrineModule\Stdlib\Hydrator\DoctrineObject as DoctrineHydrator;
@@ -19,7 +20,7 @@ class Consumption extends Fieldset implements InputFilterProviderInterface
     {
         parent::__construct('consumption');
 
-        $this->setHydrator(new DoctrineHydrator($manager, 'Event\Doctrine\Orm\Consumption'))->setObject(new \Event\Doctrine\Orm\Consumption());
+        $this->setHydrator(new DoctrineHydrator($manager, 'Event\Doctrine\Orm\Consumption'))->setObject(new ConsumptionEntity());
 
         ;
 
@@ -58,6 +59,19 @@ class Consumption extends Fieldset implements InputFilterProviderInterface
             'attributes' => array(
                 'required' => 'required',
             ),
+        ));
+        $this->add(array(
+           'name'     => 'currentState',
+            'type'    => 'Select',
+            'options' => array(
+                'label' => 'Bezahlstatus',
+                'value_options' => array(
+                    '0' => 'Wählen Sie einen Status',
+                    ConsumptionEntity::STATE_PRE_ORDERED => 'Vorbestellung',
+                    ConsumptionEntity::STATE_POST_SET    => 'Nachträgilich erfasst',
+                    ConsumptionEntity::STATE_PAID        => 'Bezahlt',
+                ),
+            )
         ));
 
 

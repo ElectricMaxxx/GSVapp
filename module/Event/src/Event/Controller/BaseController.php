@@ -213,12 +213,19 @@ class BaseController extends AbstractActionController
         ));
     }
 
+    protected function createBaseView()
+    {
+        $baseView = new ViewModel(array('title' => 'my Title'));
+        $baseView->setTemplate('event/base-view');
+
+        return $baseView;
+    }
+
     protected function renderView($template, $data)
     {
         $ownTemplate = false;
 
-        $baseView = new ViewModel(array('title' => 'my Title'));
-        $baseView->setTemplate('event/base-view');
+        $baseView = $this->createBaseView();
 
         $contentView = new ViewModel($data);
         if (file_exists(__DIR__.'/../../../view/event/'.$this->baseRoutePattern.'/'.$template.'.phtml')) {
@@ -237,6 +244,20 @@ class BaseController extends AbstractActionController
             ->addChild($contentView, 'content')
             ->addChild($navigationView, 'navigation')
         ;
+
+        return $baseView;
+    }
+
+    protected function renderBlocks($blocksData)
+    {
+        $baseView = $this->createBaseView();
+
+        foreach ($blocksData as $block) {
+            $view = new ViewModel($block);
+            $view->setTemplate($block['template']);
+
+            $baseView->addChild($block, isset($block['name']) ? $block['name'] : null);
+        }
 
         return $baseView;
     }

@@ -138,9 +138,15 @@ class Event implements ComputePricesAware, ExchangeArrayInterface
      */
     public function getName()
     {
-        return null === $this->name && $this->date instanceof \DateTime
+        $name = null === $this->name && $this->date instanceof \DateTime
             ? 'Grillen am '.$this->date->format('d.m.Y')
             : $this->name;
+
+        if ($name !== $this->name) {
+            $this->name = $name;
+        }
+
+        return $this->name;
     }
 
     /**

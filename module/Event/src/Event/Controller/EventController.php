@@ -19,15 +19,12 @@ class EventController extends BaseController
         }
 
         $date = $object->getDate();
-        if ($date instanceof \DateTime) {
-            return;
+        if (!$date instanceof \DateTime) {
+            $object->setDate(new \DateTime((string) $date, new \DateTimeZone('Europe/Berlin')));
         }
 
-        $object->setDate(new \DateTime((string) $date, new \DateTimeZone('Europe/Berlin')));
-
-        if (null === $object->getName() || '' === $object->getName()) {
-            $object->setName('Grillen am: '.$object->getDate()->format('d.m.Y'));
-        }
+        // is enough to call once
+        $object->getName();
     }
 
     protected function postLoad($object)
@@ -47,10 +44,9 @@ class EventController extends BaseController
         $date = $object->getDate();
         if (!$date instanceof \DateTime) {
             $object->setDate(new \DateTime((string) $date, new \DateTimeZone('Europe/Berlin')));
-
-            if (null === $object->getName() || '' === $object->getName()) {
-                $object->setName('Grillen am: '.$object->getDate()->format('d.m.Y'));
-            }
         }
+
+        // is enough to call once
+        $object->getName();
     }
 }

@@ -2,6 +2,7 @@
 
 namespace Event;
 
+use Event\View\Helper\PriceConverter;
 use Zend\Mvc\ModuleRouteListener;
 use Zend\Mvc\MvcEvent;
 

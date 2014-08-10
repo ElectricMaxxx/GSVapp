@@ -6,6 +6,7 @@
 use Event\Controller\DashboardController;
 use Event\Controller\EventController;
 use Event\Controller\MealController;
+use Event\Controller\StatisticController;
 use Event\Controller\UserController;
 use Event\Form\Event as EventForm;
 use Event\Form\Filter\Event as EventFilter;
@@ -59,7 +60,15 @@ return array(
                     $controller->setBaseRoutePattern('dashboard');
 
                     return $controller;
-            }
+            },
+            'Event\Controller\Statistic' => function (ControllerManager $cm) {
+                    $serviceLocator = $cm->getServiceLocator();
+                    $controller = new StatisticController();
+                    $controller->setManager($serviceLocator->get('doctrine.entitymanager.orm_default'));
+                    $controller->setBaseRoutePattern('statistic');
+
+                    return $controller;
+            },
         ),
     ),
 
@@ -115,6 +124,19 @@ return array(
                     'defaults' => array(
                         'controller' => 'Event\Controller\Dashboard',
                         'action'     => 'index',
+                    ),
+                ),
+            ),
+            'statistic' => array(
+                'type'    => 'segment',
+                'options' => array(
+                    'route'    => '/statistic[/][:action]',
+                    'constraints' => array(
+                        'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                    ),
+                    'defaults' => array(
+                        'controller' => 'Event\Controller\Statistic',
+                        'action'     => 'steakHighscore',
                     ),
                 ),
             ),
