@@ -19,7 +19,7 @@ $this->headTitle($title);
         <tr>
             <td><?php echo $this->escapeHtml($meal->getId());?></td>
             <td><?php echo $this->escapeHtml($meal->getName());?></td>
-            <td><?php echo $this->escapeHtml(round($meal->getPrice()/100), 2);?> &nbsp;€</td>
+            <td><?php echo $this->escapeHtml(round($meal->getPrice()/100, 2));?> &nbsp;€</td>
             <!-- todo[max] need to create a comma separated value for the price (ViewHelper)-->
             <td><?php echo $this->escapeHtml($meal->getDescription());?></td>
             <td>
