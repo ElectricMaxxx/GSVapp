@@ -89,7 +89,7 @@ class CashBox implements ComputePricesAware
             $prices -= $donation->getValue();
         }
 
-        return $prices;
+        return $prices*(-1);
     }
 
     /**
@@ -97,7 +97,7 @@ class CashBox implements ComputePricesAware
      */
     public function isBalanced()
     {
-        return $this->getPriceInComplete() <= 0;
+        return $this->getPriceInComplete() >= 0;
     }
 
     /**

@@ -184,8 +184,11 @@ class User implements ExchangeArrayInterface
      */
     public function exchangeArray(array $data)
     {
-        $this->name = isset($data['name']) ? $data['name'] : null;
-        $this->name = isset($data['email']) ? $data['email'] : null;
+        foreach ($data as $key => $value) {
+            if (method_exists($this, 'set'.ucfirst($key))) {
+                $this->{'set'.ucfirst($key)}($value);
+            }
+        }
     }
 
     /**

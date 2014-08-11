@@ -15,10 +15,10 @@ $this->headTitle($title); ?>
 
             </div>
             <div class="pure-u-1-2">
-                Ausgaben(komplett): <button class="button-warning">
+                Kassenstand: <button  class="<?= ($cashBox->isBalanced() ? 'button-success' : 'button-error') ?>">
                     <?=round($cashBox->getPriceInComplete()/100, 2)?> €</button>
                 Außenstände: <button
-                    class="<?= ($cashBox->isBalanced() ? 'button-success' : 'button-error') ?>">
+                    class="<?= ($cashBox->getReceivables() === 0 ? 'button-success' : 'button-error') ?>">
                     <?= round($cashBox->getReceivables()/100, 2)?> €
                 </button>
             </div>

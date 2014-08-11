@@ -69,9 +69,9 @@ class CashBoxTest extends \PHPUnit_Framework_TestCase
 
         return array(
             array(array($eventOne), array(), 0, 0, 0, true),
-            array(array($eventTwo), array($donationOne), 1250, 1750, 500, false),
+            array(array($eventTwo), array($donationOne), -1250, 1750, 500, false),
             array(array($eventTwo), array($donationTwo), 0, 1750, 1750, true),
-            array(array($eventTwo), array($donationThree), -3250, 1750, 5000, true),
+            array(array($eventTwo), array($donationThree), 3250, 1750, 5000, true),
         );
     }
 
@@ -96,7 +96,7 @@ class CashBoxTest extends \PHPUnit_Framework_TestCase
         $this->cashBox->setDonations(new ArrayCollection(array($donation)));
 
         // assertions to check the state at the beginning
-        $this->assertEquals(-3050, $this->cashBox->getPriceInComplete());
+        $this->assertEquals(3050, $this->cashBox->getPriceInComplete());
         $this->assertEquals(1950, $this->cashBox->getReceivables());
         $this->assertEquals(5000, $this->cashBox->getDonationsInComplete());
         $this->assertTrue($this->cashBox->isBalanced());
@@ -104,14 +104,14 @@ class CashBoxTest extends \PHPUnit_Framework_TestCase
         // first consumption get paid
         $consumptionOne->setCurrentState(Consumption::STATE_PAID);
 
-        $this->assertEquals(-3500, $this->cashBox->getPriceInComplete());
+        $this->assertEquals(3500, $this->cashBox->getPriceInComplete());
         $this->assertEquals(1500, $this->cashBox->getReceivables());
         $this->assertEquals(5000, $this->cashBox->getDonationsInComplete());
         $this->assertTrue($this->cashBox->isBalanced());
 
         // second consumption get paid
         $consumptionTwo->setCurrentState(Consumption::STATE_PAID);
-        $this->assertEquals(-5000, $this->cashBox->getPriceInComplete());
+        $this->assertEquals(5000, $this->cashBox->getPriceInComplete());
         $this->assertEquals(0, $this->cashBox->getReceivables());
         $this->assertEquals(5000, $this->cashBox->getDonationsInComplete());
         $this->assertTrue($this->cashBox->isBalanced());
