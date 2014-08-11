@@ -6,7 +6,9 @@ namespace Event\Controller;
 use Event\Doctrine\Orm\Event;
 
 /**
- * Controller class for the events.
+ * Controller class for serving an admin for the Event entity.
+ *
+ * Needs to hook into the lifecycle to transform date into \DateTime and back.
  *
  * @author Maximilian Berghoff <Maximilian.Berghoff@gmx.de>
  */

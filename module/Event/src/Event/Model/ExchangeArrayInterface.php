@@ -7,6 +7,9 @@ namespace Event\Model;
  * An interface to force models to create the mapping method from
  * array to the properties.
  *
+ * The Form uses this methods to get/set the data from the form
+ * into the model and back.
+ *
  * @author Maximilian Berghoff <Maximilian.Berghoff@gmx.de>
  */
 interface ExchangeArrayInterface

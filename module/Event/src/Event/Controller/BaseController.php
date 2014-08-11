@@ -4,46 +4,62 @@
 namespace Event\Controller;
 
 use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\EntityRepository;
 use Event\Model\ExchangeArrayInterface;
 use Zend\Form\Form;
+use Zend\Http\Response;
 use Zend\InputFilter\InputFilterAwareInterface;
 use Zend\Mvc\Controller\AbstractActionController;
-use Zend\Navigation\Navigation;
 use Zend\View\Model\ViewModel;
 
 /**
- * Custom controller for this module to get rid of some code duplications.
+ * This controller holds all common base crud operations.
+ *
+ * Every CRUD controller needs a form class, an input filter
+ * a baseRoutePattern, the className which it is responsible for
+ * and the doctrine entity manager to handle the persistence.
  *
  * @author Maximilian Berghoff <Maximilian.Berghoff@gmx.de>
  */
 class BaseController extends AbstractActionController
 {
     /**
-     * The current form.
+     * The form class to display, edit and create the
+     * properties of the current class.
      *
      * @var Form
      */
     protected $form;
 
     /**
-     * The current class name.
+     * The FQCN of the current class.
+     * This one is needed to get the repository, which
+     * handles the class's persistence and to
+     * instantiate a new entity.
      *
      * @var string
      */
     protected $className;
 
     /**
+     * InputFilters are uses by the Form to handle the validation.
+     *
      * @var InputFilterAwareInterface
      */
     protected $inputFilter;
 
     /**
+     * To persist the entities the doctrine entity manager
+     * is used by this controller.
+     *
      * @var EntityManager
      */
     protected $manager;
 
     /**
      * The base Route name, means {name}/{action}/[:id]
+     *
+     * It is used for detecting the responsible view templates, too.
      *
      * @var string
      */
@@ -89,11 +105,25 @@ class BaseController extends AbstractActionController
         $this->baseRoutePattern = $baseRoutePattern;
     }
 
+    /**
+     * As the repository is used and asked for on several places
+     * its creation is encapsulated in one class.
+     *
+     * @return EntityRepository
+     */
     protected function getRepositoryForCurrentClass()
     {
         return $this->manager->getRepository($this->className);
     }
 
+    /**
+     * Action to display a list of entities.
+     *
+     * Create your own template in an folder structure like
+     * ...views/event/{entity_name}/list.phhtml
+     *
+     * @return ViewModel
+     */
     public function listAction()
     {
         return $this->renderView(
@@ -105,6 +135,19 @@ class BaseController extends AbstractActionController
         );
     }
 
+    /**
+     * Action to edit an entity with the given Form class, validated by
+     * the inputFilter and persisted with the entity manager.
+     *
+     * Either create your own template in
+     * "views/event/{baseRoutePattern}/update.phhtml"
+     * or the default one "views/event/default/update.phtml"
+     * will be used.
+     *
+     * Not found entities will be redirected to the create path.
+     *
+     * @return Response|ViewModel
+     */
     public function editAction()
     {
         $id = (int) $this->params()->fromRoute('id', 0);
@@ -147,6 +190,15 @@ class BaseController extends AbstractActionController
         ));
     }
 
+    /**
+     * Entities referenced by its ID will be removed by this method.
+     *
+     * Not found ones will be redirected to list view.
+     * The entities won't be deleted directly, a page to confirm
+     * will be displayed.
+     *
+     * @return Response|ViewModel
+     */
     public function deleteAction()
     {
         $id = (int) $this->params()->fromRoute('id', 0);
@@ -182,6 +234,12 @@ class BaseController extends AbstractActionController
         ));
     }
 
+    /**
+     * Action to create an entity with the given Form class, validated by
+     * the inputFilter and persisted with the entity manager.
+     *
+     * @return ViewModel
+     */
     public function addAction()
     {
         $this->form->get('submit')->setValue('Hinzufügen');
@@ -213,6 +271,14 @@ class BaseController extends AbstractActionController
         ));
     }
 
+    /**
+     * Nested views are used to display the same base view for all
+     * create, edit, delete and list pages.
+     *
+     * All of them got a content view to display the forms and list.
+     *
+     * @return ViewModel
+     */
     protected function createBaseView()
     {
         $baseView = new ViewModel(array('title' => 'my Title'));
@@ -221,6 +287,18 @@ class BaseController extends AbstractActionController
         return $baseView;
     }
 
+    /**
+     * Calls createBaseView to get the base view to render the current content
+     * view into it.
+     *
+     * Either a custom template in the common path "views/event/{baseRoutePattern}/{action}.phtml"
+     * or an default one "views/event/default/{action}.phtml" will be used to render the
+     * data into the content view.
+     *
+     * @param $template
+     * @param $data
+     * @return ViewModel
+     */
     protected function renderView($template, $data)
     {
         $ownTemplate = false;
@@ -248,6 +326,12 @@ class BaseController extends AbstractActionController
         return $baseView;
     }
 
+    /**
+     * @todo[max] Finish this method do render Blocks in a tree alike structure by nesting views.
+     *
+     * @param $blocksData
+     * @return ViewModel
+     */
     protected function renderBlocks($blocksData)
     {
         $baseView = $this->createBaseView();
@@ -262,36 +346,70 @@ class BaseController extends AbstractActionController
         return $baseView;
     }
 
+    /**
+     * Hook into the entity lifecycle before updating it.
+     *
+     * @param $object
+     */
     protected function preUpdate($object)
     {
 
     }
 
+    /**
+     * Hook into the entity lifecycle after updating it.
+     *
+     * @param $object
+     */
     protected function postUpdate($object)
     {
 
     }
 
+    /**
+     * Hook into the entity lifecycle before persisting it the first time.
+     *
+     * @param $object
+     */
     protected function prePersist($object)
     {
 
     }
 
+    /**
+     * Hook into the entity lifecycle after persisting it the first time.
+     *
+     * @param $object
+     */
     protected function postPersist($object)
     {
 
     }
 
+    /**
+     * Hook into the entity lifecycle loading an entity in edit/delete view.
+     *
+     * @param $object
+     */
     protected function postLoad($object)
     {
 
     }
 
+    /**
+     * Hook into the entity lifecycle before removing it.
+     *
+     * @param $object
+     */
     protected function preRemove($object)
     {
 
     }
 
+    /**
+     * Do some clearing action after removing something with this
+     * CRUD controller.
+     */
     protected function postRemove()
     {
 

@@ -3,8 +3,6 @@
 
 namespace Event\Controller;
 
-use Event\Doctrine\Orm\Meal;
-
 /**
  * The admin controller for creating, editing, listing and deleting meals.
  *

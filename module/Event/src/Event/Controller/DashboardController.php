@@ -3,6 +3,8 @@
 
 namespace Event\Controller;
 
+use Zend\View\Model\ViewModel;
+
 /**
  * The DashboardController is responsible for displaying several
  * blocks on the dashboard. But it will get help from some block services.
@@ -12,22 +14,15 @@ namespace Event\Controller;
 class DashboardController extends BaseController
 {
 
+    /**
+     * todo[max] Implement some block services to display some statistics as
+     *           blocks on dashboard. By the block services the content will be reuseable
+     *           in the statistics view and on dashboard.
+     *
+     * @return array|ViewModel
+     */
     public function indexAction()
     {
-        $blocks = array();
-        #$blocks[] = $this->createHighscoreAsView(2);
-
         return $this->renderView('index', array());
-    }
-
-    protected function createHighscoreAsView($mealId)
-    {
-        return array(
-                'title' => 'Die besten Steakesser der verangenen Events',
-                'message' => 'Nur die bezahlten Steaks sind aufgeführt',
-                'list'    => $this->manager
-                        ->getRepository('Event\Doctrine\Orm\Consumption')
-                        ->getHighscoreByMeal($mealId),
-            );
     }
 }

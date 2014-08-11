@@ -8,7 +8,15 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Event\Doctrine\Orm\Consumption;
 use Event\Doctrine\Orm\Event;
 use Event\Model\CashBox;
+use Zend\View\Model\ViewModel;
 
+/**
+ * Controller class to display several statistic.
+ *
+ * Each statistic is done by its own action.
+ *
+ * @author Maximilian Berghoff <Maximilian.Berghoff@gmx.de>
+ */
 class StatisticController extends BaseController
 {
     /**
@@ -19,6 +27,15 @@ class StatisticController extends BaseController
      */
     const DEFAULT_MEAL_ID = 2;
 
+    /**
+     * This action creates a list of users with its sums of ordered and eaten
+     * meals.
+     *
+     * The meal to display the highscore can be set by an route parmater, the default
+     * one (const) is used else.
+     *
+     * @return ViewModel
+     */
     public function highscoreAction()
     {
         $id = (int) $this->params()->fromRoute('id', 0);
@@ -43,6 +60,11 @@ class StatisticController extends BaseController
         ));
     }
 
+    /**
+     * Creates a list of events, with its pricing calculations and receivables.
+     *
+     * @return ViewModel
+     */
     public function eventsAction()
     {
         $events = $this->manager->getRepository('Event\Doctrine\Orm\Event')->findBy(array(), array('date' => 'ASC'));
@@ -80,6 +102,11 @@ class StatisticController extends BaseController
         return $meals;
     }
 
+    /**
+     * Creates the cashBox view by counting all events and donations.
+     *
+     * @return ViewModel
+     */
     public function cashBoxAction()
     {
         $events = $this->manager->getRepository('Event\Doctrine\Orm\Event')->findBy(array(), array('date' => 'ASC'));

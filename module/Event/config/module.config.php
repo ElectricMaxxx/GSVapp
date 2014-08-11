@@ -15,7 +15,7 @@ use Event\Form\Event as EventForm;
 use Event\Form\Filter\Event as EventFilter;
 use Event\Form\Filter\Meal;
 use Event\Form\Filter\User as UserFilter;
-use Event\Form\Meal as MealObject;
+use Event\Form\Meal as MealForm;
 use Event\Form\User;
 use Zend\Mvc\Controller\ControllerManager;
 
@@ -40,7 +40,7 @@ return array(
                     $controller->setManager($serviceLocator->get('doctrine.entitymanager.orm_default'));
                     $controller->setBaseRoutePattern('meal');
                     $controller->setClassName('Event\Doctrine\Orm\Meal');
-                    $controller->setForm(new MealObject('meal'));
+                    $controller->setForm(new MealForm('meal'));
                     $controller->setInputFilter(new Meal());
 
                     return $controller;

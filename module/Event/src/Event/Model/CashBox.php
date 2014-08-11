@@ -10,9 +10,8 @@ use Event\Doctrine\Orm\Event;
  * Modeling the CashBox is done by this class.
  *
  * Every CashBox contains a collection of all Events, so it can
- * evaluate the state by checking each of them. To get some money
- * at the beginning, or solve empty states the CashBox got the possibility
- * to add donations.
+ * evaluate the state by checking each of them. Donations can be created to get
+ * some money into the cashBox.
  *
  * The CashBox isn't persisted. It's just an virtual sum of all Events and Donations.
  *

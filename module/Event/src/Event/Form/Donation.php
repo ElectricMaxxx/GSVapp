@@ -3,7 +3,6 @@
 
 namespace Event\Form;
 
-
 use Doctrine\Common\Persistence\ObjectManager;
 use Zend\Form\Form;
 
