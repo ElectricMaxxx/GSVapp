@@ -26,12 +26,12 @@ class CashBoxTest extends \PHPUnit_Framework_TestCase
     /**
      * @dataProvider getEventAndDonations
      */
-    public function testPriceComputing(array $events, array $donations, $receivables, $donation, $balance)
+    public function testPriceComputing(array $events, array $donations, $complete, $receivables, $donation, $balance)
     {
         $this->cashBox->setEvents(new ArrayCollection($events));
         $this->cashBox->setDonations(new ArrayCollection($donations));
 
-        $this->assertEquals($receivables, $this->cashBox->getReceivables());
+        $this->assertEquals($complete, $this->cashBox->getPriceInComplete());
         $this->assertEquals($receivables, $this->cashBox->getReceivables());
         $this->assertEquals($donation, $this->cashBox->getDonationsInComplete());
 
@@ -66,10 +66,10 @@ class CashBoxTest extends \PHPUnit_Framework_TestCase
         $donationThree->setValue(5000);
 
         return array(
-            array(array($eventOne), array(), 0, 0, true),
-            array(array($eventTwo), array($donationOne), 1750, 500, false),
-            array(array($eventTwo), array($donationTwo), 1750, 1750, false),
-            array(array($eventTwo), array($donationThree), 1750, 5000, false),
+            array(array($eventOne), array(), 0, 0, 0, true),
+            array(array($eventTwo), array($donationOne), 1750, 1750, 500, false),
+            array(array($eventTwo), array($donationTwo), 1750, 1750, 1750, false),
+            array(array($eventTwo), array($donationThree), 1750, 1750, 5000, false),
         );
     }
 
