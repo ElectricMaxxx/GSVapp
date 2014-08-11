@@ -50,9 +50,11 @@ class CashBoxTest extends \PHPUnit_Framework_TestCase
         $consumptionTwo = new Consumption($soup, 1);
 
         $eventOne = new Event();
+        $eventOne->setDate(new \DateTime());
         $eventOne->addConsumption($consumptionWithAmountNull);
 
         $eventTwo = new Event();
+        $eventTwo->setDate(new \DateTime());
         $eventTwo->addConsumption($consumptionsOne);
         $eventTwo->addConsumption($consumptionTwo);
 
@@ -67,9 +69,9 @@ class CashBoxTest extends \PHPUnit_Framework_TestCase
 
         return array(
             array(array($eventOne), array(), 0, 0, 0, true),
-            array(array($eventTwo), array($donationOne), 1750, 1750, 500, false),
-            array(array($eventTwo), array($donationTwo), 1750, 1750, 1750, false),
-            array(array($eventTwo), array($donationThree), 1750, 1750, 5000, false),
+            array(array($eventTwo), array($donationOne), 1250, 1750, 500, false),
+            array(array($eventTwo), array($donationTwo), 0, 1750, 1750, true),
+            array(array($eventTwo), array($donationThree), -3250, 1750, 5000, true),
         );
     }
 
@@ -94,22 +96,22 @@ class CashBoxTest extends \PHPUnit_Framework_TestCase
         $this->cashBox->setDonations(new ArrayCollection(array($donation)));
 
         // assertions to check the state at the beginning
-        $this->assertEquals(1950, $this->cashBox->getPriceInComplete());
+        $this->assertEquals(-3050, $this->cashBox->getPriceInComplete());
         $this->assertEquals(1950, $this->cashBox->getReceivables());
         $this->assertEquals(5000, $this->cashBox->getDonationsInComplete());
-        $this->assertFalse($this->cashBox->isBalanced());
+        $this->assertTrue($this->cashBox->isBalanced());
 
         // first consumption get paid
         $consumptionOne->setCurrentState(Consumption::STATE_PAID);
 
-        $this->assertEquals(1950, $this->cashBox->getPriceInComplete());
+        $this->assertEquals(-3500, $this->cashBox->getPriceInComplete());
         $this->assertEquals(1500, $this->cashBox->getReceivables());
         $this->assertEquals(5000, $this->cashBox->getDonationsInComplete());
-        $this->assertFalse($this->cashBox->isBalanced());
+        $this->assertTrue($this->cashBox->isBalanced());
 
         // second consumption get paid
         $consumptionTwo->setCurrentState(Consumption::STATE_PAID);
-        $this->assertEquals(1950, $this->cashBox->getPriceInComplete());
+        $this->assertEquals(-5000, $this->cashBox->getPriceInComplete());
         $this->assertEquals(0, $this->cashBox->getReceivables());
         $this->assertEquals(5000, $this->cashBox->getDonationsInComplete());
         $this->assertTrue($this->cashBox->isBalanced());

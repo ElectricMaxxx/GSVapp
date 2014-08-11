@@ -197,6 +197,7 @@ class Event implements ComputePricesAware, ExchangeArrayInterface
 
     public function __toString()
     {
+        print("Event: ".$this->getName());
         return $this->getName();
     }
 

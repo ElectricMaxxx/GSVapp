@@ -80,7 +80,13 @@ class CashBox implements ComputePricesAware
         /** @var Event[] $events */
         $events = $this->getEvents()->toArray();
         foreach ($events as $event) {
-            $prices += $event->getPriceInComplete();
+            $prices += $event->getReceivables();
+        }
+
+        /** @var Donation[] $donations */
+        $donations = $this->getDonations()->toArray();
+        foreach ($donations as $donation) {
+            $prices -= $donation->getValue();
         }
 
         return $prices;
@@ -91,7 +97,7 @@ class CashBox implements ComputePricesAware
      */
     public function isBalanced()
     {
-        return !$this->getReceivables();
+        return $this->getPriceInComplete() <= 0;
     }
 
     /**
