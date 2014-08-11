@@ -3,6 +3,7 @@
 namespace Event\Doctrine\Orm;
 
 use Doctrine\ORM\Mapping as ORM;
+use Event\Model\ExchangeArrayInterface;
 
 /**
  * A donation is a possibility to add some money to the CashBox or
@@ -12,7 +13,7 @@ use Doctrine\ORM\Mapping as ORM;
  *
  * @ORM\Entity
  */
-class Donation
+class Donation implements ExchangeArrayInterface
 {
     /**
      * The primary key for the persistence.
@@ -87,5 +88,29 @@ class Donation
     public function getValue()
     {
         return $this->value;
+    }
+
+
+    /**
+     * {@inheritDoc}
+     */
+    public function exchangeArray(array $data)
+    {
+        $this->id = isset($data['id']) ? $data['id'] : null;
+        $this->value = isset($data['value']) ? $data['value'] : null;
+        $this->user = isset($data['user']) ? $data['user'] : null;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getArrayCopy()
+    {
+        return get_object_vars($this);
+    }
+
+    public function __toString()
+    {
+        return 'Gutschrifft '.$this->getUser().'('.round($this->getValue()/100, 2).' €)';
     }
 }

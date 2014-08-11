@@ -49,7 +49,7 @@ class User implements ExchangeArrayInterface
     /**
      * @var Donation[]|ArrayCollection
      *
-     * @ORM\OneToMany(targetEntity="Event\Doctrine\Orm\Donation", mappedBy="user",cascade={"persist"})
+     * @ORM\OneToMany(targetEntity="Event\Doctrine\Orm\Donation", mappedBy="user", cascade={"persist"})
      */
     private $donations;
 

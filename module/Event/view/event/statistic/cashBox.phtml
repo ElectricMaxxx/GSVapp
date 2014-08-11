@@ -24,29 +24,47 @@ $this->headTitle($title); ?>
             </div>
         </div>
     </div>
-    <div class="pure-u-1">
-        <h3>Liste der Veranstaltungen</h3>
+    <div class="pure-g">
+        <div class="pure-u-2-3">
+            <h3>Liste der Veranstaltungen</h3>
+            <ul>
+                <?php foreach ($cashBox->getEvents()->toArray() as $event) : ?>
+                    <li class="pure-g">
+                        <div class="pure-u-1-3">
+                            <a
+                                href="<?=$this->url('event', array('action' => 'edit', 'id' => $event->getId())) ;?>"
+                                title="<?=$event->getName()?> Bearbeiten">
+                                <?=$event->getName() ?>
+                            </a>
+                        </div>
+                        <div class="pure-u-2-3">
+                            Kosten (komplett): <button class="button-warning">
+                                <?=round($event->getPriceInComplete()/100, 2)?> €
+                            </button>
+                            Außenstände: <button
+                                class="<?= ($event->isBalanced() ? 'button-success' : 'button-error') ?>">
+                                <?= round($event->getReceivables()/100, 2)?> €
+                            </button>
+                        </div>
+                    </li>
+                <?php endforeach; ?>
+            </ul>
+        </div>
+        <div class="pure-u-1-3">
+        <h3>Liste der Gutschriften</h3>
         <ul>
-            <?php foreach ($cashBox->getEvents()->toArray() as $event) : ?>
+            <?php foreach ($cashBox->getDonations()->toArray() as $donation) : ?>
                 <li class="pure-g">
-                    <div class="pure-u-1-3">
+                    <div class="pure-u-1">
                         <a
-                            href="<?=$this->url('event', array('action' => 'edit', 'id' => $event->getId())) ;?>"
-                            title="<?=$event->getName()?> Bearbeiten">
-                            <?=$event->getName() ?>
+                            href="<?=$this->url('donation', array('action' => 'edit', 'id' => $donation->getId())) ;?>"
+                            title="<?=$donation?> Bearbeiten">
+                            <button class="button-success"><?=$donation ?></button>
                         </a>
-                    </div>
-                    <div class="pure-u-2-3">
-                        Kosten (komplett): <button class="button-warning">
-                            <?=round($event->getPriceInComplete()/100, 2)?> €
-                        </button>
-                        Außenstände: <button
-                            class="<?= ($event->isBalanced() ? 'button-success' : 'button-error') ?>">
-                            <?= round($event->getReceivables()/100, 2)?> €
-                        </button>
                     </div>
                 </li>
             <?php endforeach; ?>
         </ul>
+    </div>
     </div>
 </div>

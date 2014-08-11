@@ -83,8 +83,10 @@ class StatisticController extends BaseController
     public function cashBoxAction()
     {
         $events = $this->manager->getRepository('Event\Doctrine\Orm\Event')->findBy(array(), array('date' => 'ASC'));
+        $donations = $this->manager->getRepository('Event\Doctrine\Orm\Donation')->findAll();
         $cashBox = new CashBox();
         $cashBox->setEvents(new ArrayCollection($events));
+        $cashBox->setDonations(new ArrayCollection($donations));
         return $this->renderView('cashBox', array(
             'title'  => 'Die Kasse im Überblick',
             'cashBox' => $cashBox,

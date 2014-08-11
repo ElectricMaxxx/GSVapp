@@ -1,0 +1,34 @@
+<?php
+$title = 'Gutschrifen';
+$this->headTitle($title);
+?>
+<h1><?php echo $this->escapeHtml($title); ?></h1>
+<p>
+    <a href="<?php echo $this->url('donation', array('action'=>'add'));?>">Neue Gutschrift hinzufügen</a>
+</p>
+
+<table class="pure-table pure-table-horizontal">
+    <tr>
+        <th>ID</th>
+        <th>Mitglied</th>
+        <th>Wert</th>
+        <th>Optionen</th>
+    </tr>
+    <?php foreach ($list as $donation) : ?>
+        <tr>
+            <td><?php echo $this->escapeHtml($donation->getId());?></td>
+            <td><?php echo $this->escapeHtml($donation->getValue());?></td>
+            <td><?php echo $this->escapeHtml($donation->getUser()->getUsername());?></td>
+            <td>
+                <a href="<?php echo $this->url('donation', array(
+                    'action'=>'edit',
+                    'id' => $donation->getId()
+                ));?>">Bearbeiten</a>
+                <a href="<?php echo $this->url('donation', array(
+                    'action'=>'delete',
+                    'id' => $donation->getId()
+                ));?>">Löschen</a>
+            </td>
+        </tr>
+    <?php endforeach; ?>
+</table>

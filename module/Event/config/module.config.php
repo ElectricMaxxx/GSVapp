@@ -56,6 +56,17 @@ return array(
 
                     return $controller;
             },
+            'Event\Controller\Donation' => function (ControllerManager $cm) {
+                    $serviceLocator = $cm->getServiceLocator();
+                    $controller = new DonationController();
+                    $controller->setManager($serviceLocator->get('doctrine.entitymanager.orm_default'));
+                    $controller->setBaseRoutePattern('donation');
+                    $controller->setClassName('Event\Doctrine\Orm\Donation');
+                    $controller->setForm(new DonationForm('donation', $serviceLocator->get('doctrine.entitymanager.orm_default')));
+                    $controller->setInputFilter(new DonationFilter());
+
+                    return $controller;
+                },
             'Event\Controller\Dashboard' => function (ControllerManager $cm) {
                     $serviceLocator = $cm->getServiceLocator();
                     $controller = new DashboardController();
@@ -102,6 +113,20 @@ return array(
                     ),
                     'defaults' => array(
                         'controller' => 'Event\Controller\User',
+                        'action'     => 'list',
+                    ),
+                ),
+            ),
+            'donation' => array(
+                'type'    => 'segment',
+                'options' => array(
+                    'route'    => '/donation[/][:action][/:id]',
+                    'constraints' => array(
+                        'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                        'id'     => '[0-9]+',
+                    ),
+                    'defaults' => array(
+                        'controller' => 'Event\Controller\Donation',
                         'action'     => 'list',
                     ),
                 ),
